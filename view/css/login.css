@@ -23,10 +23,6 @@ div.caixa {
     margin-right: -50%;
     transform: translate(-50%, -50%)
 }
-div.ver-senha {
-    position: relative;
-    display: flex;
-}
 .lnr-eye {
     position: absolute;
     top: 5px;
