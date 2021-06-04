@@ -1,0 +1,25 @@
+.head{
+    display: flex;
+    margin-top: 1em;
+    justify-content: space-around;
+    width: 115em;
+    
+}
+
+.content{
+    color: black;
+    border: 2px solid white;
+    border-radius: 0.3em;
+    width: 65em;
+    margin-left: 50%;
+    margin-top: 3em;
+    display: flex;
+    text-align: center;
+}
+
+.container {
+   padding: 5px 16px;
+   margin-top: 1em; 
+   color: white;
+   background-color: rgb(26, 26, 26);
+}
