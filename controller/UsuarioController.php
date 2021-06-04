@@ -61,7 +61,7 @@ class UsuarioController{
     public function create(){
         $obj = new Usuario();
 
-        if($_POST['email'] != ""|| $_POST['nome'] != "" || $_POST['senha'] != "" || $_POST['confirmar_senha'] != "" ){
+        if($_POST['email'] != "" && $_POST['nome'] != "" && $_POST['senha'] != "" && $_POST['confirmar_senha'] != "" ){
            
            if($_POST['senha'] == $_POST['confirmar_senha']){
 

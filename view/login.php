@@ -4,47 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
     <style>
         <?php include "css/login.css" ?>
     </style>
     <title>Login</title>
 </head>
 <body>
+<div class="box">
+<form action="./?acao=create" method="post" id="formulario">
 
-    <form action="./?acao=create" method="post" id="formulario">
+<label>Nome</label><br>
+<input class="center-block" type="text" name="nome" value=""/><br>
 
-        <label>Nome</label><br>
-        <input type="text" name="nome" value=""/><br>
+<label>Email</label><br>
+<input class="center-block" type="email" name="email" value=""/><br>
 
-        <label>Email</label><br>
-        <input type="email" name="email" value=""/><br>
+<label>Senha</label><br>
+<input class="center-block" type="password" name="senha" value=""/><br>
 
-        <label>Senha</label><br>
-        <input type="password" name="senha" value=""/><br>
+<label>Confirmar Senha</label><br>
+<input class="center-block" type="password" name="confirmar_senha" value=""/><br>
 
-        <label>Confirmar Senha</label><br>
-        <input type="password" name="confirmar_senha" value=""/><br>
+<br>
 
-        <br>
+<button type="submit">Salvar</button>
+</form>
 
-        <button type="submit">Salvar</button>
-    </form>
+<form action="./?acao=login" method="post" id="formulario_login">
 
-    <form action="./?acao=login" method="post" id="formulario_login">
+<label>Email</label><br>
+<input class="center-block" type="email" name="email" value=""/><br>
 
-        <label>Email</label><br>
-        <input type="email" name="email" value=""/><br>
+<label>Senha</label><br>
+<input class="center-block" type="password" name="senha" value=""/><br>
 
-        <label>Senha</label><br>
-        <input type="password" name="senha" value=""/><br>
+<br>
 
-        <br>
+<button type="submit">Salvar</button>
+</form>
 
-        <button type="submit">Salvar</button>
-    </form>
+<p>Já tem uma conta?<a id="btn_form">Clique aqui!</a></p>
 
-    <p>Já tem uma conta?<a id="btn_form">Clique aqui!</a></p>
-    
+</div>
     <script>
         var btn_form = document.getElementById("btn_form")
         var formulario = document.getElementById("formulario")
