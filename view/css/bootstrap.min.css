@@ -2174,33 +2174,33 @@
  }
 
  .form-control::-webkit-input-placeholder {
-     color: #868e96;
+     color: #212529;
      opacity: 1
  }
 
  .form-control::-moz-placeholder {
-     color: #868e96;
+     color: #212529;
      opacity: 1
  }
 
  .form-control:-ms-input-placeholder {
-     color: #868e96;
+     color: #212529;
      opacity: 1
  }
 
  .form-control::-ms-input-placeholder {
-     color: #868e96;
+     color: #212529;
      opacity: 1
  }
 
  .form-control::placeholder {
-     color: #868e96;
+     color: #212529;
      opacity: 1
  }
 
  .form-control:disabled,
  .form-control[readonly] {
-     background-color: #f7f7f9;
+     background-color: #212529;
      opacity: 1
  }
 

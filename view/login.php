@@ -17,19 +17,35 @@
             <div class="caixa">
                 <h1 id="titulo">Cadastro</h1>
                 <form action="./?acao=create" method="post" id="formulario">
-                    <label>Nome</label><br>
-                    <input class="text-box" type="text" name="nome" value=""/><br>
-                    <label>Email</label><br>
-                    <input class="text-box" type="email" name="email" value=""/><br>
-                    <div class="ver-senha">
-                    <label>Senha</label><br>
-                    <input class="text-box" type="password" name="senha" value=""/><br>
-                    <span class="lnr lnr-eye"></span>
-                    </div>
-                    <div class="ver-senha">
-                    <label>Confirmar Senha</label><br>
-                    <input class="text-box" type="password" name="confirmar_senha" value=""/><br>
-                    <span class="lnr lnr-eye"></span>
+                    <div class="form-group">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="nome"class="form-control" id="floatingInput" placeholder="Carlinhos Maia" value="">
+                            <label for="floatingInput">Nome</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="email" name="email" class="form-control" id="floatingPassword" placeholder="carlinhos@gmail.com" value="">
+                            <label for="floatingPassword">Email</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" name="senha" class="form-control" id="floatingPassword" value="">
+                            <label for="floatingPassword">Senha</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Mostrar Senha
+                            </label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" name="confirmar_senha" class="form-control" id="floatingPassword" value="">
+                            <label for="floatingPassword">Confirmar Senha</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Mostrar Senha
+                            </label>
+                        </div>
                     </div>
                     <br>
                     <button type="submit">Salvar</button>
@@ -37,16 +53,23 @@
                 <form action="./?acao=login" method="post" id="formulario_login">
                     <label>Email</label><br>
                     <input class="text-box" type="email" name="email" value=""/><br>
-                    <div class="ver-senha">
-                    <label>Senha</label><br>
-                    <input class="text-box" type="password" name="senha" value=""/><br>
-                    <span class="lnr lnr-eye"></span>
+                    <div class="form-floating">
+                        <input type="password" name="senha" class="form-control" id="floatingPassword" value="">
+                        <label for="floatingPassword">Senha</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                        Mostrar Senha
+                        </label>
                     </div>
                     <br>
                     <button type="submit">Salvar</button>
-                </form><br>
+                </form>
+                <br>
                 <span>
-                    <p id="conta">Já tem uma conta?</p><a id="btn_form"><b>Clique aqui!</b></a>
+                    <p id="conta">Já tem uma conta?</p>
+                    <a id="btn_form"><b>Clique aqui!</b></a>
                 </span>
             </div>
         </center>
@@ -77,7 +100,6 @@
                     formulario_login.style.display = "block"
                 }
             }
-            
         </script>
     </body>
 </html>
