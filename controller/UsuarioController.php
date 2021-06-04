@@ -73,14 +73,14 @@ class UsuarioController{
             }
             else
             {
-                echo "Senhas não são iguais!";
+                echo "Atenção, senhas incompatíveis!";
                 include 'view/login.php';
             }
             
         }
         else
         {
-            echo "Complete todos os campos!";
+            echo "Por favor, preencha todos os campos!";
             include 'view/login.php';
         }  
     }
