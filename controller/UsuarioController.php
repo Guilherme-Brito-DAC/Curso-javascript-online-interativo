@@ -40,14 +40,14 @@ class UsuarioController{
             }
             else
             {
-                echo 'Por favor, informe email e senha válidos';
+                echo 'Email ou senha inválidos';
                 include 'view/login.php';
             }
 
         }
         else
         {
-            echo "Por favor, preencha todos os campos!";
+            echo "Complete todos os campos!";
             include 'view/login.php';
         }
        
