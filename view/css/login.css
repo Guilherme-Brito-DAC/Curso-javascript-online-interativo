@@ -1,28 +1,43 @@
-body{
-    background-color:#464646;
-    color:white;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-}
+
 #btn_form{
     cursor:pointer;
+    color: #00ccff;
 }
 #formulario_login{
     display:none;
 }
-.center-block {
+.text-box {
     display: block;
     margin-right: auto;
     margin-left: auto;
-    
+    width: 300px;
 }
-div.box {
-    background-color: rgba(0, 119, 255, 0.514);
+div.caixa {
+    background-color: rgba(104, 104, 104, 0.514);
     border-radius: 10px;
-    width: 260px;
     padding: 40px;
-    position: relative }
+    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+div.ver-senha {
+    position: relative;
+}
+.lnr-eye {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+    .text-box {
+        width: 80%;
+    }
+    div.caixa{
+        width: 100%;
+        height: 100%;
+    }
+  }
