@@ -1,8 +1,9 @@
-.head{
+.header{
     display: flex;
     margin-top: 1em;
     justify-content: space-around;
-    width: 115em;
+    width: 100%;
+    background-color: black;
     
 }
 
@@ -10,11 +11,11 @@
     color: black;
     border: 2px solid white;
     border-radius: 0.3em;
-    width: 65em;
-    margin-left: 50%;
+    width: 100%;
+    margin-left: 70%;
     margin-top: 3em;
     display: flex;
-    text-align: center;
+    
 }
 
 .container {
@@ -23,3 +24,5 @@
    color: white;
    background-color: rgb(26, 26, 26);
 }
+
+

@@ -1,8 +1,10 @@
 <?php
+
     if(isset($_SESSION['alert'])){
     }
     
     ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -17,7 +19,9 @@
         <title>Login</title>
     </head>
     <body>
-        <center>
+
+        <center>    
+
             <div class="box">
                 <h1 id="titulo">Cadastro</h1>
                 <br />
@@ -85,6 +89,7 @@
         </center>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+
             var alerta = '<?php echo $_SESSION['alert'] ?>'
             
             function campos(){
@@ -143,6 +148,13 @@
                 }
             }
             
+            function alert(){
+                Swal.fire({
+            icon: 'error',
+            title: 'Por favor, Complete todos os campos!',
+            })
+            }
+
             var btn_form = document.getElementById("btn_form");
             var formulario = document.getElementById("formulario");
             var formulario_login = document.getElementById("formulario_login");
