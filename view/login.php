@@ -1,10 +1,12 @@
+<?php
+echo $_SESSION['alert'];
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css" />
         <style>
             <?php include "css/login.css";
@@ -14,7 +16,7 @@
     </head>
     <body>
         <center>    
-            <div class="caixa">
+            <div class="box">
                 <h1 id="titulo">Cadastro</h1>
                 <br />
 
@@ -81,8 +83,15 @@
                 </span>
             </div>
         </center>
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
+            function alert(){
+                Swal.fire({
+            icon: 'error',
+            title: 'Por favor, Complete todos os campos!',
+            })
+            }
+
 
             var btn_form = document.getElementById("btn_form");
             var formulario = document.getElementById("formulario");
@@ -147,7 +156,6 @@
                     txt_senha_login.type = "text";
                 }
             });
-
         </script>
     </body>
 </html>

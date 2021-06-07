@@ -111,9 +111,8 @@ class UsuarioController{
         }
         else
         {
-            echo "
-            <div class='alert alert-dismissible alert-danger'>Por favor, Complete todos os campos!</div>";
-
+            session_start();
+            $_SESSION ['alert']= 'Campos';
             include 'view/login.php';
         }  
     }
