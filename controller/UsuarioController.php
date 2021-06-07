@@ -40,19 +40,20 @@ class UsuarioController{
             }
             else
             {
-                echo 'Por favor, informe email e senha válidos';
+                echo 'Email ou senha inválidos';
                 include 'view/login.php';
             }
 
         }
         else
         {
-            echo "Por favor, preencha todos os campos!";
+            echo "Complete todos os campos!";
             include 'view/login.php';
         }
        
         }
-        catch(PDOException $error){
+        catch(PDOException $error)
+        {
             echo $error->getMessage();
         }
 
@@ -65,22 +66,53 @@ class UsuarioController{
            
            if($_POST['senha'] == $_POST['confirmar_senha']){
 
-            $obj->setEmail($_POST['email']);
-            $obj->setNome($_POST['nome']);
-            $obj->setSenha($_POST['senha']);
-            $obj->create();
+            try
+            {
+    
+            $con = $obj->getCon();
+    
+            $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    
+            $query = "SELECT * FROM usuario WHERE email = :email";
+            
+            $user = $con->prepare($query);
+
+            $user->execute(array('email' => $_POST["email"]));
+    
+            $count = $user->rowCount();
+    
+                if( $count > 0 )
+                {
+                    echo "<div class='alert alert-dismissible alert-warning'>Email já cadastrado!</div>";
+
+                    include 'view/login.php';
+                }
+                else
+                {
+                    $obj->setEmail($_POST['email']);
+                    $obj->setNome($_POST['nome']);
+                    $obj->setSenha($_POST['senha']);
+                    $obj->create();
+                }     
+            }
+            catch(PDOException $error)
+            {
+                echo $error->getMessage();
+            }
 
             }
             else
             {
-                echo "Senhas não são iguais!";
+                echo "<div class='alert alert-dismissible alert-danger'>Atenção, senhas incompatíveis! </div>";
+
                 include 'view/login.php';
             }
             
         }
         else
         {
-            echo "Complete todos os campos!";
+            session_start();
+            $_SESSION ['alert']= 'Campos';
             include 'view/login.php';
         }  
     }
