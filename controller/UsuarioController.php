@@ -36,6 +36,8 @@ class UsuarioController{
             {
                 session_start();
                 $_SESSION["email"] = $_POST["email"];
+                $_SESSION["senha"] = $_POST["senha"];
+
                 header("Location: view/home.php");
             }
             else

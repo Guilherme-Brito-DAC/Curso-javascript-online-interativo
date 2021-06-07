@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
+  header('Location: ./');
+  exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +15,48 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Home</title>
    <style>
-      <?php include "css/bootstrap.min.css"?>
+      <?php include "css/bootstrap.min.css";
+      include "css/home.css";?>
    </style>
+   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarColor01">
+      
       <ul class="navbar-nav me-auto">
-        <img src="img/goxtoso.png" width="50" height="50">
+      <div class="header">
+      <div style="display:flex;">
+        <img src="img/goxtoso.png" width="50" height="50" style="margin-right:1rem">
         <li class="nav-item">
-          <a class="nav-link" href="#">Cursos</a>
+          <a class="nav-link" href="home.php">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sobre</a>
+          <a class="nav-link" href="">Sobre</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Perfil</a>
+          <a class="nav-link" href="perfil.php">Perfil</a>
         </li>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Ex: Function, var...">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
-      </form>
+        </div>
+
+      <div>
       <li class="nav-item">
-         <button type="button" class="btn btn-outline-danger">Deslogar</button>
+       <div style="display:flex;heigth:100%">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Procurar">
+            <button id="search" type="button" class="btn btn-info"><img src="https://img.icons8.com/android/20/ffffff/search.png"/></button>
+        </div>
       </li>
+      </div>
+
+        <li class="nav-item">
+          <a class="nav-link" >Sair</a>
+        </li>
+
+      </div>
+
       </ul>
+  
     </div>
   </div>
 </nav>

@@ -87,75 +87,8 @@
                 </span>
             </div>
         </center>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-
-            var alerta = '<?php echo $_SESSION['alert'] ?>'
-            
-            function campos(){
-                Swal.fire({
-            icon: 'error',
-            title: '<h1 style="color: white;">Por favor, Complete todos os campos!</h1>',
-            background: '#474547',
-            confirmButtonColor: '#1993c6',
-            })
-            }
-            
-            function senha(){
-                Swal.fire({
-            icon: 'error',
-            title: '<h1 style="color: white;">As senhas não coincídem, Digite novamente!</h1>',
-            background: '#474547',
-            confirmButtonColor: '#1993c6',
-            })
-            }
-            
-            function email(){
-                Swal.fire({
-            icon: 'error',
-            title: '<h1 style="color: white;">Email já cadastrado!</h1>',
-            background: '#474547',
-            confirmButtonColor: '#1993c6',
-            })
-            }   
-            
-            function senha_invalida(){
-                Swal.fire({
-            icon: 'error',
-            title: '<h1 style="color: white;">Email ou senha inválidos</h1>',
-            background: '#474547',
-            confirmButtonColor: '#1993c6',
-            })
-            }  
-            if(alerta){
-            
-                switch (alerta) {
-                    case 'Campos':
-                        campos()
-                    break;
-                    case 'Senha':
-                        senha()
-                    break;
-                    case 'Email':
-                        email()
-                    break;
-                    case 'Senha_Inválida':
-                        senha_invalida()
-                    break;
-                default:
-                    console.log(`Sorry, we are out of ${expr}.`);
-                break;
-                }
-            }
-            
-            function alert(){
-                Swal.fire({
-            icon: 'error',
-            title: 'Por favor, Complete todos os campos!',
-            })
-            }
-
-            var btn_form = document.getElementById("btn_form");
+ var btn_form = document.getElementById("btn_form");
             var formulario = document.getElementById("formulario");
             var formulario_login = document.getElementById("formulario_login");
             
@@ -218,6 +151,71 @@
                     txt_senha_login.type = "text";
                 }
             });
+
+
+        </script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            var alerta = '<?php echo $_SESSION['alert'] ?>'
+            
+            function campos(){
+                Swal.fire({
+            icon: 'error',
+            title: '<h1 style="color: white;">Por favor, Complete todos os campos!</h1>',
+            background: '#474547',
+            confirmButtonColor: '#1993c6',
+            })
+            }
+            
+            function senha(){
+                Swal.fire({
+            icon: 'error',
+            title: '<h1 style="color: white;">As senhas não coincídem, Digite novamente!</h1>',
+            background: '#474547',
+            confirmButtonColor: '#1993c6',
+            })
+            }
+            
+            function email(){
+                Swal.fire({
+            icon: 'error',
+            title: '<h1 style="color: white;">Email já cadastrado!</h1>',
+            background: '#474547',
+            confirmButtonColor: '#1993c6',
+            })
+            }   
+            
+            function senha_invalida(){
+                Swal.fire({
+            icon: 'error',
+            title: '<h1 style="color: white;">Email ou senha inválidos</h1>',
+            background: '#474547',
+            confirmButtonColor: '#1993c6',
+            })
+            }  
+
+            if(alerta){
+            
+                switch (alerta) {
+                    case 'Campos':
+                        campos()
+                    break;
+                    case 'Senha':
+                        senha()
+                    break;
+                    case 'Email':
+                        email()
+                    break;
+                    case 'Senha_Inválida':
+                        senha_invalida()
+                    break;
+                default:
+                    console.log(`Sorry, we are out of ${expr}.`);
+                break;
+                }
+
+            }
+            
         </script>
     </body>
 </html>
