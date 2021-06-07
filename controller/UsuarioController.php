@@ -62,6 +62,8 @@ class UsuarioController{
     public function create(){
         $obj = new Usuario();
 
+        session_start();
+
         if($_POST['email'] != "" && $_POST['nome'] != "" && $_POST['senha'] != "" && $_POST['confirmar_senha'] != "" ){
            
            if($_POST['senha'] == $_POST['confirmar_senha']){
@@ -111,8 +113,7 @@ class UsuarioController{
         }
         else
         {
-            session_start();
-            $_SESSION ['alert']= 'Campos';
+            $_SESSION ['alert'] = 'Campos';
             include 'view/login.php';
         }  
     }
