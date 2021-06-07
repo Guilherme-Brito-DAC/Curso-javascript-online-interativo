@@ -63,7 +63,9 @@
      color: #55595c;
      background-color: #222222;
      -webkit-text-size-adjust: 100%;
-     -webkit-tap-highlight-color: transparent
+     -webkit-tap-highlight-color: transparent;
+     width: 100em;
+     height: 100%;
  }
  
  hr {
