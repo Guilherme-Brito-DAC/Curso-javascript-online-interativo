@@ -40,14 +40,16 @@ class UsuarioController{
             }
             else
             {
-                echo 'Email ou senha inválidos';
+                session_start();
+                $_SESSION ['alert']= 'Senha_Inválida';
                 include 'view/login.php';
             }
 
         }
         else
         {
-            echo "Complete todos os campos!";
+            session_start();
+            $_SESSION ['alert']= 'Campos';
             include 'view/login.php';
         }
        
@@ -83,8 +85,8 @@ class UsuarioController{
     
                 if( $count > 0 )
                 {
-                    echo "<div class='alert alert-dismissible alert-warning'>Email já cadastrado!</div>";
-
+                    session_start();
+                    $_SESSION ['alert']= 'Email';
                     include 'view/login.php';
                 }
                 else
@@ -103,17 +105,16 @@ class UsuarioController{
             }
             else
             {
-                echo "<div class='alert alert-dismissible alert-danger'>Atenção, senhas incompatíveis! </div>";
-
+                session_start();
+                $_SESSION ['alert']= 'Senha';
                 include 'view/login.php';
             }
             
         }
         else
         {
-            echo "
-            <div class='alert alert-dismissible alert-danger'>Por favor, Complete todos os campos!</div>";
-
+            session_start();
+            $_SESSION ['alert']= 'Campos';
             include 'view/login.php';
         }  
     }
