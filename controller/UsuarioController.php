@@ -104,10 +104,23 @@ class UsuarioController{
                 }
                 else
                 {
+                    session_start();
+
                     $obj->setEmail($_POST['email']);
                     $obj->setNome($_POST['nome']);
                     $obj->setSenha($_POST['senha']);
+
+
+                    $_SESSION["email"] = $_POST["email"];
+                    $_SESSION["senha"] = $_POST["senha"];
+                    $_SESSION["nome"] = $_POST['nome'];
+
                     $obj->create();
+
+                    $id = $obj->getIdBD();
+                    $_SESSION["id"] = $id;
+   
+                    header("Location: view/home.php");
                 }     
             }
             catch(PDOException $error)

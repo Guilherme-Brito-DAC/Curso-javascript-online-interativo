@@ -32,8 +32,8 @@
                             <label for="floatingInput">Nome</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" name="email" class="form-control" id="floatingPassword" value="" />
-                            <label for="floatingPassword">Email</label>
+                            <input type="email" name="email" class="form-control" id="email_cad" value="" />
+                            <label for="email_cad">Email</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" name="senha" class="form-control" id="txt_senha_cadastro" value="" />
@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="btn_senha_cadastro" />
-                            <label class="form-check-label" for="flexCheckDefault" style="float: left;">
+                            <label class="form-check-label" id="lbl_senha_cad" for="flexCheckDefault" style="float: left;">
                             Mostrar Senha
                             </label>
                         </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="btn_confimar_senha_cadastro" />
-                            <label class="form-check-label" for="flexCheckDefault" style="float: left;">
+                            <label class="form-check-label" id="lbl_con_senha" for="flexCheckDefault" style="float: left;">
                             Mostrar Senha
                             </label>
                         </div>
@@ -62,8 +62,8 @@
                 </form>
                 <form action="./?acao=login" method="post" id="formulario_login">
                     <div class="form-floating">
-                        <input type="email" name="email" class="form-control" id="floatingPassword" value="" />
-                        <label for="floatingPassword">Email</label>
+                        <input type="email" name="email" class="form-control" id="email_log" value="" />
+                        <label for="email_log">Email</label>
                     </div>
                     <br />
                     <div class="form-floating">
@@ -73,7 +73,7 @@
                     <br />
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="btn_senha_login" />
-                        <label class="form-check-label" for="flexCheckDefault" style="float: left;">
+                        <label class="form-check-label" id="lbl_senha_login" for="flexCheckDefault" style="float: left;">
                         Mostrar Senha
                         </label>
                     </div>
@@ -88,7 +88,26 @@
             </div>
         </center>
         <script>
- var btn_form = document.getElementById("btn_form");
+
+            document.getElementById("email_cad").addEventListener('input', function () {
+                document.getElementById("email_log").value = document.getElementById("email_cad").value;
+            })
+
+            document.getElementById("email_log").addEventListener('input', function () {
+                document.getElementById("email_cad").value = document.getElementById("email_log").value;
+            })
+
+            document.getElementById("txt_senha_cadastro").addEventListener('input', function () {
+                document.getElementById("txt_senha_login").value = document.getElementById("txt_senha_cadastro").value;
+            })
+
+            document.getElementById("txt_senha_login").addEventListener('input', function () {
+                document.getElementById("txt_senha_cadastro").value = document.getElementById("txt_senha_login").value;
+            })
+
+        </script>
+        <script>
+            var btn_form = document.getElementById("btn_form");
             var formulario = document.getElementById("formulario");
             var formulario_login = document.getElementById("formulario_login");
             
@@ -123,35 +142,64 @@
             var senhaShow_login = false;
             
             btn_senha_cad.addEventListener("change", () => {
-                if (senhaShow_cad) {
-                    senhaShow_cad = false;
-                    txt_senha_cad.type = "password";
-                } else {
-                    senhaShow_cad = true;
-                    txt_senha_cad.type = "text";
-                }
+                SenhaShowCad()
             });
             
             btn_con_senha.addEventListener("change", () => {
-                if (senhaShow_con) {
-                    senhaShow_con = false;
-                    txt_con_senha.type = "password";
-                } else {
-                    senhaShow_con = true;
-                    txt_con_senha.type = "text";
-                }
+                SenhaShowCon()
             });
             
             btn_senha_login.addEventListener("change", () => {
+                SenhaShowLog()
+            });
+
+            lbl_senha_cad.addEventListener("click", () => {
+                SenhaShowCad()
+            });
+            
+            lbl_con_senha.addEventListener("click", () => {
+                SenhaShowCon()
+            });
+            
+            lbl_senha_login.addEventListener("click", () => {
+                SenhaShowLog()
+            });
+
+            function SenhaShowCad(){
+                if (senhaShow_cad) {
+                    senhaShow_cad = false;
+                    btn_senha_cad.checked = false;
+                    txt_senha_cad.type = "password";
+                } else {
+                    senhaShow_cad = true;
+                    btn_senha_cad.checked = true;
+                    txt_senha_cad.type = "text";
+                }
+            }
+
+            function SenhaShowCon(){
+                if (senhaShow_con) {
+                    senhaShow_con = false;
+                    btn_con_senha.checked = false;
+                    txt_con_senha.type = "password";
+                } else {
+                    senhaShow_con = true;
+                    btn_con_senha.checked = true;
+                    txt_con_senha.type = "text";
+                }
+            }
+
+            function SenhaShowLog(){
                 if (senhaShow_login) {
                     senhaShow_login = false;
+                    btn_senha_login.checkd = false;
                     txt_senha_login.type = "password";
                 } else {
                     senhaShow_login = true;
+                    btn_senha_login.checkd = true;
                     txt_senha_login.type = "text";
                 }
-            });
-
+            }
 
         </script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
