@@ -35,9 +35,22 @@ class UsuarioController{
             if( $count > 0 )
             {
                 session_start();
+
                 $_SESSION["email"] = $_POST["email"];
                 $_SESSION["senha"] = $_POST["senha"];
 
+                $obj->setSenha($_POST["senha"]);
+                $obj->setEmail($_POST["email"]);
+
+                $id = $obj->getIdBD();
+                $nome = $obj->getNomeBD();
+                
+                $_SESSION["id"] = $id;
+                $_SESSION["nome"] = $nome;
+
+                $obj->setId($id);
+                $obj->setNome($nome);
+   
                 header("Location: view/home.php");
             }
             else

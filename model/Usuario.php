@@ -49,9 +49,12 @@ class Usuario{
 		$sql = $this->con->prepare("UPDATE usuario SET email=?, nome=? WHERE id=?");
 		$sql->execute([$this->getEmail(), $this->getNome(), $this->getId()]);
 
-		if($sql->errorCode()!='00000'){
+		if($sql->errorCode()!='00000')
+		{
             echo $sql->errorInfo()[2];
-        }else{
+        }
+		else
+		{
            header("Location: ./");
 		}
 	}
@@ -69,6 +72,24 @@ class Usuario{
         {
            header("Location: ./");
 		}
+	}
+
+	public function getIdBD()
+	{
+		$sql = $this->con->prepare("SELECT id FROM usuario WHERE email=?");
+        $sql->execute([$this->getEmail()]);
+        $row = $sql->fetchObject();
+
+        return $row->id;	
+	}
+
+	public function getNomeBD()
+	{
+		$sql = $this->con->prepare("SELECT nome FROM usuario WHERE email=?");
+        $sql->execute([$this->getEmail()]);
+        $row = $sql->fetchAll(PDO::FETCH_CLASS);
+
+        return $row[0]->nome;	
 	}
 
 	public function getId()
@@ -119,7 +140,8 @@ class Usuario{
 		return $this;
 	}
 
-    public function getCon(){
+    public function getCon()
+	{
 		return $this->con;
     }
 }
