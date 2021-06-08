@@ -78,7 +78,7 @@
                         </label>
                     </div>
                     <br />
-                    <button style="width: 100%;" id="btn_salvar" type="submit">Salvar</button>
+                    <button style="width: 100%;" id="btn_salvar" type="submit">Entrar</button>
                 </form>
                 <br />
                 <span>
