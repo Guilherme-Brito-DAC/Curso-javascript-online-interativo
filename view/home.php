@@ -60,5 +60,30 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
     </div>
   </div>
 </nav>
+<main id="main">
+
+  <script>
+
+    for(let i = 0; i < 10; i++){
+      let item = `
+    <div class="list-item">
+      <div class="card text-white bg-dark mb-5" style="max-width: 20rem;">
+        <div class="card-header"><img src="https://img.icons8.com/color/50/000000/code.png"/>Aula 0${i+1}</div>
+          <div class="card-body">
+            <img src="img/code.png" style="width:100%;margin-bottom:1rem"/>
+            <h4 class="card-title">Título</h4>
+            <p class="card-text">Texto</p>
+            <label style="opacity:0.5">2 min</label>
+          </div>
+      </div>
+    </div>`
+    
+      document.getElementById("main").innerHTML += item;
+    }
+  </script>
+
+    
+    
+</main>
 </body>
 </html>

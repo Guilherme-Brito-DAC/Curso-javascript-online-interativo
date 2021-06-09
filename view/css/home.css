@@ -13,7 +13,16 @@ input{
     justify-content: space-between;
     width: 99vw;
 }
-
 a{
     cursor: pointer;
+}
+main{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 5rem;
+    width: 100%;
+}
+.list-item{
+    margin-left: 1.5rem;
 }
