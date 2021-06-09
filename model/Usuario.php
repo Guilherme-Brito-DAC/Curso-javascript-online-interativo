@@ -55,7 +55,7 @@ class Usuario{
         }
 		else
 		{
-           header("Location: ./");
+           header("Location:view/perfil.php");
 		}
 	}
 

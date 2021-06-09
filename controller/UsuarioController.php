@@ -149,6 +149,26 @@ class UsuarioController{
     }
 
     public function update(){
+        $obj = new Usuario;
+        if ( !isset($_POST["nome"]) )
+        {
+            echo "Nome não informado";
+            include 'view/perfil.php';
+            exit;
+        }
+
+        if ( !isset($_POST["email"]) )
+        {
+            echo "Email não informado";
+            include 'view/perfil.php';
+            exit;
+        }
+
+        $obj->setEmail($_POST["email"]);
+        $obj->setNome($_POST["nome"]);
+
+        $obj->update();
+
 
     }
 

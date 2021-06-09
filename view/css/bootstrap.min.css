@@ -11634,7 +11634,6 @@ th {
      padding-left: var(--bs-gutter-x, .75rem);
      margin-right: auto;
      margin-left: auto;
-     text-align: right;
  }
  
  @media (min-width:576px) {

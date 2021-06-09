@@ -1,57 +1,117 @@
+<?php 
+   session_start();
+   
+   ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <style>
-      <?php include "css/bootstrap.min.css";
-      include "css/home.css";?>
-   </style>
-   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      
-      <ul class="navbar-nav me-auto">
-      <div class="header">
-      <div style="display:flex;">
-        <img src="img/goxtoso.png" width="50" height="50" style="margin-right:1rem">
-        <li class="nav-item">
-          <a class="nav-link" href="home.php">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Sobre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="perfil.php">Perfil</a>
-        </li>
-        </div>
-
-      <div>
-      <li class="nav-item">
-       <div style="display:flex;heigth:100%">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Procurar">
-            <button id="search" type="button" class="btn btn-info"><img src="https://img.icons8.com/android/20/ffffff/search.png"/></button>
-        </div>
-      </li>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Perfil</title>
+      <style>
+         <?php include "css/bootstrap.min.css";
+            include "css/perfil.css";
+            include "css/home.css";?>
+      </style>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+         <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+               <ul class="navbar-nav me-auto">
+                  <div class="header">
+                     <div style="display:flex;">
+                        <img src="img/goxtoso.png" width="50" height="50" style="margin-right:1rem">
+                        <li class="nav-item">
+                           <a class="nav-link" href="home.php">Início</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="perfil.php">Perfil</a>
+                        </li>
+                     </div>
+                     <div>
+                        <li class="nav-item">
+                           <div style="display:flex;heigth:100%">
+                              <input type="text" class="form-control" id="floatingInput" placeholder="Procurar">
+                              <button id="search" type="button" class="btn btn-info"><img src="https://img.icons8.com/android/20/ffffff/search.png"/></button>
+                           </div>
+                        </li>
+                     </div>
+                     <li class="nav-item">
+                        <a class="nav-link" >Sair</a>
+                     </li>
+                  </div>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      <div class="container col-12" style="margin-top: 3em; background-color: #2a2b2a; padding: 3em; width: 60em; display: grid; grid-template-columns: 33% 33% 33%; gap: 1em;">
+         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="grid-column: 1/span 2;">
+            <input type="button" class="btn-check" id="btnperfil" checked="" autocomplete="off">
+            <label class="btn btn-primary" id="lblperfil" for="btncheck1">Perfil</label>
+            <input type="button" class="btn-check" id="btnsenha" autocomplete="off">
+            <label class="btn btn-primary" id ="lblsenha" for="btncheck2">Senha</label>
+         </div>
+         <div style="grid-row: 1/span 2; grid-columns: 3;" id="divimg">
+            <img class="foto" src="img/jooj.png"/>
+            <div class="form-group">
+               <input class="form-control" type="file" id="formFile" style="margin-top: 1em;">
+            </div>
+         </div>
+         <div style="grid-column: 1/span 2; grid-row: 2;" id="divperfil">
+            <form action="perfil.php?acao=update" method="post" id="formulario" style="margin-top: 8em">
+               <div class="form-group">
+                  <div class="form-floating mb-3">
+                     <input type="text" name="nome" class="form-control" id="floatingInput" value="<?php echo $_SESSION['nome']?>"/>
+                     <label for="floatingInput">Nome</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="email" name="email" class="form-control" id="email_cad" value="<?php echo $_SESSION['email']?>"/>
+                     <label for="email_cad">Email</label>
+                  </div>
+               </div>
+               <br />
+               <button style="float: left;" type="submit" class="btn btn-info">Salvar</button>
+            </form>
+            <button style="float: right;" type="submit" class="btn btn-danger">Deletar</button>
+         </div>
+         <div style="grid-column: 1/span 2; grid-row: 2; display:none" id="divsenha">
+            <form action="./?acao=updateS" method="post" id="formulario" style="margin-top: 8em">
+               <div class="form-group">
+                  <div class="form-floating mb-3">
+                     <input type="password" name="senhaold" class="form-control" id="floatingInput"/>
+                     <label for="floatingInput">Senha Antiga</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="password" name="senhanew" class="form-control" id="floatingInput"/>
+                     <label for="floatingInput">Senha Nova</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="password" name="senhaconf" class="form-control" id="email_cad"/>
+                     <label for="email_cad">Confirmar Nova Senha</label>
+                  </div>
+               </div>
+               <br />
+               <button style="float: left;" type="button" class="btn btn-info">Salvar</button>
+            </form>
+         </div>
       </div>
-
-        <li class="nav-item">
-          <a class="nav-link" >Sair</a>
-        </li>
-
-      </div>
-
-      </ul>
-  
-    </div>
-  </div>
-</nav>
-
-
-</body>
+      <script>
+         document.getElementById('lblperfil').addEventListener("click", () => {
+           document.getElementById('divperfil').style.display= "block"
+           document.getElementById('divimg').style.display= "block"
+           document.getElementById('divsenha').style.display= "none"
+         })
+         document.getElementById('lblsenha').addEventListener("click", () => {
+           document.getElementById('divperfil').style.display= "none"
+           document.getElementById('divimg').style.display= "block"
+           document.getElementById('divsenha').style.display= "block"
+         })
+      </script>
+   </body>
 </html>
