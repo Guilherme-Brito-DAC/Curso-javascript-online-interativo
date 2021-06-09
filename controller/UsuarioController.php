@@ -35,7 +35,7 @@ class UsuarioController{
             if( $count > 0 )
             {
                 session_start();
-
+                $obj->setEmail($_POST["email"]);
                 $id = $obj->getIdBD();
                 $nome = $obj->getNomeBD();
 
@@ -45,7 +45,6 @@ class UsuarioController{
                 $_SESSION["nome"] = $nome;
 
                 $obj->setSenha($_POST["senha"]);
-                $obj->setEmail($_POST["email"]);
                 $obj->setId($id);
                 $obj->setNome($nome);
    
@@ -62,7 +61,7 @@ class UsuarioController{
         else
         {
             session_start();
-            $_SESSION ['alert']= 'Campos';
+            $_SESSION ['alert']= 'Campos_Login';
             include 'view/login.php';
         }
        

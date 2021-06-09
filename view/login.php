@@ -72,7 +72,7 @@
                     </div>
                     <br />
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="btn_senha_login" />
+                        <input class="form-check-input" type="checkbox" value="" id="btn_senha_login"/>
                         <label class="form-check-label" id="lbl_senha_login" for="flexCheckDefault" style="float: left;">
                         Mostrar Senha
                         </label>
@@ -110,10 +110,13 @@
             var btn_form = document.getElementById("btn_form");
             var formulario = document.getElementById("formulario");
             var formulario_login = document.getElementById("formulario_login");
-            
             var IsinLogin = false;
             
             btn_form.onclick = function () {
+                Login_Cad()
+            };
+
+            function Login_Cad(){
                 if (IsinLogin) {
                     document.getElementById("titulo").innerHTML = "Cadastro";
                     document.getElementById("conta").innerHTML = "Já tem uma conta?";
@@ -127,8 +130,8 @@
                     formulario.style.display = "none";
                     formulario_login.style.display = "block";
                 }
-            };
-            
+            }
+
             var btn_senha_cad = document.getElementById("btn_senha_cadastro");
             var btn_con_senha = document.getElementById("btn_confimar_senha_cadastro");
             var btn_senha_login = document.getElementById("btn_senha_login");
@@ -200,7 +203,6 @@
                     txt_senha_login.type = "text";
                 }
             }
-
         </script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
