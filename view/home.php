@@ -41,12 +41,6 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
         </div>
 
       <div>
-      <li class="nav-item">
-       <div style="display:flex;heigth:100%">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Procurar">
-            <button id="search" type="button" class="btn btn-info"><img src="https://img.icons8.com/android/20/ffffff/search.png"/></button>
-        </div>
-      </li>
       </div>
 
         <li class="nav-item">

@@ -1,6 +1,5 @@
 <?php 
-   session_start();
-   
+   session_start(); 
    ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,14 +33,6 @@
                            <a class="nav-link" href="perfil.php">Perfil</a>
                         </li>
                      </div>
-                     <div>
-                        <li class="nav-item">
-                           <div style="display:flex;heigth:100%">
-                              <input type="text" class="form-control" id="floatingInput" placeholder="Procurar">
-                              <button id="search" type="button" class="btn btn-info"><img src="https://img.icons8.com/android/20/ffffff/search.png"/></button>
-                           </div>
-                        </li>
-                     </div>
                      <li class="nav-item">
                         <a class="nav-link" >Sair</a>
                      </li>
@@ -55,7 +46,9 @@
             <input type="button" class="btn-check" id="btnperfil" checked="" autocomplete="off">
             <label class="btn btn-primary" id="lblperfil" for="btncheck1">Perfil</label>
             <input type="button" class="btn-check" id="btnsenha" autocomplete="off">
-            <label class="btn btn-primary" id ="lblsenha" for="btncheck2">Senha</label>
+            <label class="btn btn-primary" id ="lblsenha" for="btncheck2">Alterar Senha</label>
+            <input type="button" class="btn-check" id="btnDelete" autocomplete="off">
+            <label class="btn btn-primary" id ="lblDelete" for="btnDelete">Deletar Conta</label>
          </div>
          <div style="grid-row: 1/span 2; grid-columns: 3;" id="divimg">
             <img class="foto" src="img/jooj.png"/>
@@ -64,7 +57,8 @@
             </div>
          </div>
          <div style="grid-column: 1/span 2; grid-row: 2;" id="divperfil">
-            <form action="perfil.php?acao=update" method="post" id="formulario" style="margin-top: 8em">
+            
+            <form action="../index.php?acao=update" method="post" id="formulario" style="margin-top: 8em">
                <div class="form-group">
                   <div class="form-floating mb-3">
                      <input type="text" name="nome" class="form-control" id="floatingInput" value="<?php echo $_SESSION['nome']?>"/>
@@ -78,26 +72,41 @@
                <br />
                <button style="float: left;" type="submit" class="btn btn-info">Salvar</button>
             </form>
-            <button style="float: right;" type="submit" class="btn btn-danger">Deletar</button>
          </div>
          <div style="grid-column: 1/span 2; grid-row: 2; display:none" id="divsenha">
-            <form action="./?acao=updateS" method="post" id="formulario" style="margin-top: 8em">
+            <form action="../index.php?acao=updateSenha" method="post" id="formulario" style="margin-top: 8em">
                <div class="form-group">
                   <div class="form-floating mb-3">
-                     <input type="password" name="senhaold" class="form-control" id="floatingInput"/>
+                     <input type="password" name="senhaOld" class="form-control" id="floatingInput"/>
                      <label for="floatingInput">Senha Antiga</label>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="password" name="senhanew" class="form-control" id="floatingInput"/>
+                     <input type="password" name="senhaNew" class="form-control" id="floatingInput"/>
                      <label for="floatingInput">Senha Nova</label>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="password" name="senhaconf" class="form-control" id="email_cad"/>
+                     <input type="password" name="senhaCon" class="form-control" id="email_cad"/>
                      <label for="email_cad">Confirmar Nova Senha</label>
                   </div>
                </div>
                <br />
-               <button style="float: left;" type="button" class="btn btn-info">Salvar</button>
+               <button style="float: left;" type="submit" class="btn btn-info">Salvar</button>
+            </form>
+         </div>
+         <div style="grid-column: 1/span 2; grid-row: 2; display:none" id="divDelete">
+         <form action="../index.php?acao=delete" method="post" id="formulario_delete" style="margin-top: 8em">
+               <div class="form-group">
+                  <div class="form-floating mb-3">
+                     <input type="password" name="senha" id="txt_Delsenha" class="form-control" />
+                     <label for="floatingInput">Senha</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="password" name="senhaCon" id="txt_DelsenhaCon" class="form-control" />
+                     <label for="email_cad">Confirmar Senha</label>
+                  </div>
+               </div>
+               <br />
+               <button style="float: left;" type="button" id="btn_delete" class="btn btn-danger">Deletar</button>
             </form>
          </div>
       </div>
@@ -106,12 +115,52 @@
            document.getElementById('divperfil').style.display= "block"
            document.getElementById('divimg').style.display= "block"
            document.getElementById('divsenha').style.display= "none"
+           document.getElementById('divDelete').style.display= "none"
          })
          document.getElementById('lblsenha').addEventListener("click", () => {
            document.getElementById('divperfil').style.display= "none"
            document.getElementById('divimg').style.display= "block"
            document.getElementById('divsenha').style.display= "block"
+           document.getElementById('divDelete').style.display= "none"
          })
+         document.getElementById('lblDelete').addEventListener("click", () => {
+           document.getElementById('divperfil').style.display= "none"
+           document.getElementById('divimg').style.display= "none"
+           document.getElementById('divsenha').style.display= "none"
+           document.getElementById('divDelete').style.display= "Block"
+         })
+      </script>
+      <script>
+      function DeleteCon(){
+         Swal.fire({
+            title: "<h3 style='color: white'>Tem certeza? </h3>",
+            html: "<h6 style='color: white'> É irreversível e nós sentiremos saudades </h6>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1993c6',
+            cancelButtonColor: '#d33',
+            iconColor:'#d33',
+            cancelButtonText: 'Não, vou ficar mais um pouco',
+            background: '#474547',
+            confirmButtonText: 'Sim, Tchau :('
+         }).then((result) => {
+            if (result.isConfirmed) {
+               document.getElementById("formulario_delete").submit()
+            }
+         })
+      }
+
+      document.getElementById("btn_delete").addEventListener("click",()=>{
+            if(document.getElementById("txt_Delsenha").value != "" && document.getElementById("txt_DelsenhaCon").value != "")
+            {
+               DeleteCon()
+            }
+            else
+            {
+               console.log("Complete todos os campos animal")
+            }
+      })
+
       </script>
    </body>
 </html>

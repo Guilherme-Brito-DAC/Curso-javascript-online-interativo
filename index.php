@@ -7,14 +7,18 @@ require_once "model/Usuario.php";
 $app = new UsuarioController();
 
 if ( isset($_GET['acao']) ){
-
     switch ($_GET['acao']) {
+        
         case 'create':
             $app->create();
             break;
 
         case 'update':
             $app->update();
+            break;
+
+        case 'updateSenha':
+            $app->updateSenha();
             break;
 
         case 'delete':
@@ -29,6 +33,7 @@ if ( isset($_GET['acao']) ){
             $app->start();
             break;
     }
+
 }
 else{
     $app->start();

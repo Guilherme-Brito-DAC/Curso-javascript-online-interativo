@@ -44,10 +44,10 @@ class Usuario{
         return $row;		
 	}
 
-	public function update()
+	public function update($email,$nome)
     {
 		$sql = $this->con->prepare("UPDATE usuario SET email=?, nome=? WHERE id=?");
-		$sql->execute([$this->getEmail(), $this->getNome(), $this->getId()]);
+		$sql->execute([$email, $nome, $this->getId()]);
 
 		if($sql->errorCode()!='00000')
 		{
@@ -55,7 +55,29 @@ class Usuario{
         }
 		else
 		{
-           header("Location:view/perfil.php");
+            $this->setEmail($email);
+            $this->setNome($nome);
+            $_SESSION["email"] = $email;
+            $_SESSION["nome"] = $nome;
+
+           header("Location: ./view/perfil.php");
+		}
+	}
+
+	public function updateSenha($senha)
+	{
+		$sql = $this->con->prepare("UPDATE usuario SET senha=? WHERE id=?");
+		$sql->execute([$senha,  $this->getId()]);
+
+		if($sql->errorCode()!='00000')
+		{
+            echo $sql->errorInfo()[2];
+        }
+		else
+		{
+		   session_destroy();
+           header("Location: ./view/login.php");
+		   exit();
 		}
 	}
 
@@ -70,7 +92,9 @@ class Usuario{
         }
         else
         {
-           header("Location: ./");
+			session_destroy();
+			header("Location: ./view/login.php");
+			exit();
 		}
 	}
 

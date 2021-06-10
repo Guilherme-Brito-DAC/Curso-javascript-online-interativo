@@ -5150,7 +5150,7 @@ fieldset:disabled .btn {
 	flex-direction: column;
 	min-width: 0;
 	word-wrap: break-word;
-	background-color: #fff;
+	background-color: #2a2b2a;
 	background-clip: border-box;
 	border: 1px solid rgba(0, 0, 0, .125)
 }
@@ -15745,7 +15745,7 @@ th {
      flex-direction: column;
      min-width: 0;
      word-wrap: break-word;
-     background-color: #fff;
+     background-color: #2a2b2a;
      background-clip: border-box;
      border: 1px solid rgba(0, 0, 0, .125)
  }
@@ -19007,7 +19007,7 @@ th {
  }
  
  .bg-dark {
-     background-color: #343a40!important
+     background-color: #2a2b2a!important
  }
  
  .bg-body {

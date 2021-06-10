@@ -195,11 +195,11 @@
             function SenhaShowLog(){
                 if (senhaShow_login) {
                     senhaShow_login = false;
-                    btn_senha_login.checkd = false;
+                    btn_senha_login.checked = false;
                     txt_senha_login.type = "password";
                 } else {
                     senhaShow_login = true;
-                    btn_senha_login.checkd = true;
+                    btn_senha_login.checked = true;
                     txt_senha_login.type = "text";
                 }
             }
@@ -259,11 +259,9 @@
                     case 'Senha_Inválida':
                         senha_invalida()
                     break;
-                default:
-                    console.log(`Sorry, we are out of ${expr}.`);
-                break;
                 }
 
+                alerta = '<?php $_SESSION['alert'] = ""; ?>'
             }
             
         </script>

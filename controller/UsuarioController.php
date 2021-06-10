@@ -61,7 +61,7 @@ class UsuarioController{
         else
         {
             session_start();
-            $_SESSION ['alert']= 'Campos_Login';
+            $_SESSION ['alert']= 'Campos';
             include 'view/login.php';
         }
        
@@ -131,7 +131,7 @@ class UsuarioController{
             else
             {
                 session_start();
-                $_SESSION ['alert']= 'Senha';
+                $_SESSION ['alert'] = 'Senha';
                 include 'view/login.php';
             }
             
@@ -139,50 +139,107 @@ class UsuarioController{
         else
         {
             session_start();
-            $_SESSION ['alert']= 'Campos';
+            $_SESSION ['alert'] = 'Campos';
             include 'view/login.php';
         }  
     }
 
-    public function read(){
-
-    }
 
     public function update(){
+        
         $obj = new Usuario;
-        if ( !isset($_POST["nome"]) )
+        session_start();
+
+        if($_POST['email'] == $_SESSION['email']){
+
+            $obj->setId($_SESSION["id"]);
+            $obj->update($_POST["email"],$_POST["nome"]);
+
+        }else
         {
-            echo "Nome não informado";
-            include 'view/perfil.php';
-            exit;
-        }
+            
+            try
+            {
+    
+            $con = $obj->getCon();
+    
+            $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    
+            $query = "SELECT * FROM usuario WHERE email = :email";
+            
+            $user = $con->prepare($query);
 
-        if ( !isset($_POST["email"]) )
+            $user->execute(array('email' => $_POST["email"]));
+    
+            $count = $user->rowCount();
+    
+                if( $count > 0 )
+                {
+                    echo "Email já cadastrado!";
+                    header("Location: ./view/perfil.php");
+                }
+                else
+                {
+                    session_start();
+                    $obj->setId($_SESSION["id"]);
+                    $obj->update($_POST["email"],$_POST["nome"]);
+                }     
+            }
+            catch(PDOException $error)
+            {
+                echo $error->getMessage();
+            }
+        }
+    }
+
+    public function updateSenha(){
+        
+        $obj = new Usuario;
+        session_start();
+
+        if($_POST['senhaOld'] == $_SESSION['senha'])
         {
-            echo "Email não informado";
-            include 'view/perfil.php';
-            exit;
+            if($_POST['senhaOld'] == $_POST['senhaNew'])
+            {
+                echo "A senha nova não pode ser igual à anterior";
+                header("Location: ./view/perfil.php");
+            }
+            else
+            {
+                if($_POST['senhaNew'] == $_POST['senhaCon'])
+                {
+                    $obj->setId($_SESSION["id"]);
+                    $obj->updateSenha($_POST["senhaNew"]);
+                }
+                else
+                {
+                    echo "As senhas novas não coincidem";
+                    header("Location: ./view/perfil.php");
+                }
+            }
         }
-
-        $obj->setEmail($_POST["email"]);
-        $obj->setNome($_POST["nome"]);
-
-        $obj->update();
-
-
+        else
+        {
+            echo "Senha antiga não confere";
+            header("Location: ./view/perfil.php");
+        }
     }
 
     public function delete(){
 
+        session_start();
+
         if( !isset($_SESSION["id"]) )
         {
             echo "Id não informado";
+            header("Location: ./view/perfil.php");
             exit;
         }
 
         if( !isset($_POST["senha"]) )
         {
             echo "Senha não informado";
+            header("Location: ./view/perfil.php");
             exit;
         }
 
@@ -209,7 +266,7 @@ class UsuarioController{
 
         if($count > 0)
         {
-            $obj = new Usuario();
+            $obj->setId($_SESSION["id"]);
             $obj->delete();  
         }
         else
@@ -222,7 +279,5 @@ class UsuarioController{
         {
             echo $error->getMessage();
         }
-    
     }
-
 }
