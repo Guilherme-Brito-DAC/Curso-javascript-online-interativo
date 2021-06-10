@@ -33,7 +33,7 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
           <a class="nav-link" href="home.php">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Sobre</a>
+          <a class="nav-link" href="">Meus Códigos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="perfil.php">Perfil</a>

@@ -33,7 +33,7 @@
                            <a class="nav-link" href="home.php">Início</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="">Sobre</a>
+                           <a class="nav-link" href="">Meus Códigos</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="perfil.php">Perfil</a>
@@ -102,6 +102,7 @@
          <div style="grid-column: 1/span 2; grid-row: 2; display:none" id="divDelete">
          <form action="../index.php?acao=delete" method="post" id="formulario_delete" style="margin-top: 8em">
                <div class="form-group">
+               <p class="text-danger">Cuidado! Essa é uma ação irreversível</p>
                   <div class="form-floating mb-3">
                      <input type="password" name="senha" id="txt_Delsenha" class="form-control" />
                      <label for="floatingInput">Senha</label>
