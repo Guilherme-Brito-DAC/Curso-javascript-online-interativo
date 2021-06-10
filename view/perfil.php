@@ -1,6 +1,13 @@
 <?php 
    session_start(); 
-   ?>
+
+   if(!isset($_SESSION['email']) || !isset($_SESSION['senha']))
+   {
+      header('Location: ./');
+      exit;
+   }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -22,7 +29,6 @@
                <ul class="navbar-nav me-auto">
                   <div class="header">
                      <div style="display:flex;">
-                        <img src="img/goxtoso.png" width="50" height="50" style="margin-right:1rem">
                         <li class="nav-item">
                            <a class="nav-link" href="home.php">Início</a>
                         </li>

@@ -41,6 +41,7 @@ class UsuarioController{
 
                 $_SESSION["email"] = $_POST["email"];
                 $_SESSION["senha"] = $_POST["senha"];
+                $_SESSION["login"] = "first";
                 $_SESSION["id"] = $id;
                 $_SESSION["nome"] = $nome;
 
@@ -109,7 +110,7 @@ class UsuarioController{
                     $obj->setNome($_POST['nome']);
                     $obj->setSenha($_POST['senha']);
 
-
+                    $_SESSION["login"] = "first";
                     $_SESSION["email"] = $_POST["email"];
                     $_SESSION["senha"] = $_POST["senha"];
                     $_SESSION["nome"] = $_POST['nome'];

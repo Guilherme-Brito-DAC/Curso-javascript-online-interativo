@@ -19,6 +19,7 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
       include "css/home.css";?>
    </style>
    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <link rel="stylesheet" type="text/css" href="css/fakeLoader.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -28,7 +29,6 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
       <ul class="navbar-nav me-auto">
       <div class="header">
       <div style="display:flex;">
-        <img src="img/goxtoso.png" width="50" height="50" style="margin-right:1rem">
         <li class="nav-item">
           <a class="nav-link" href="home.php">Início</a>
         </li>
@@ -58,7 +58,7 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
 
   <script>
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 5; i++){
       let item = `
     <div class="list-item">
       <div class="card text-white bg-dark mb-5" style="max-width: 20rem;">
@@ -75,9 +75,33 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
       document.getElementById("main").innerHTML += item;
     }
   </script>
+  <div class="myloader"></div>
 
-    
-    
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="js/fakeLoader.min.js"></script>
+  <script>
+
+  var login = '<?php echo $_SESSION['login'] ?>'
+
+    function load(){
+      $('.myloader').fakeLoader({
+        timeToHide: 1500,
+        bgColor:'#222222',
+        spinner:'spinner6'
+      })
+    }
+
+  if(login)
+  {
+      if(login == "first")
+      {
+        load()
+        login = '<?php $_SESSION['login'] = "" ?>'
+      }
+  }
+      
+
+  </script>
 </main>
 </body>
 </html>
