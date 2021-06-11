@@ -281,4 +281,22 @@ class UsuarioController{
             echo $error->getMessage();
         }
     }
+    
+    public function exit(){
+    
+        $obj = new Usuario(); 
+        $item = null;
+    
+        $obj->setId($item);
+        $obj->setEmail($item);
+        $obj->setSenha($item);
+        $obj->setNome($item);
+    
+        session_start(); 
+        session_destroy(); 
+        header("location: ./");
+        exit();
+    
+    }
 }
+

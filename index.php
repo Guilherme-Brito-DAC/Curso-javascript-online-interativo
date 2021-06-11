@@ -29,6 +29,10 @@ if ( isset($_GET['acao']) ){
             $app->login();
             break;    
 
+        case 'logout':
+            $app->exit();
+            break;    
+
         default:
             $app->start();
             break;

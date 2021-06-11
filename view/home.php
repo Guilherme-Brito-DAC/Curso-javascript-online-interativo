@@ -44,7 +44,7 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
       </div>
 
         <li class="nav-item">
-          <a class="nav-link" >Sair</a>
+          <a class="nav-link" id="logout">Sair</a>
         </li>
 
       </div>
@@ -103,5 +103,33 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
 
   </script>
 </main>
+
+<script>
+
+    document.getElementById("logout").onclick = function () { 
+            Swal.fire({
+            title: '<h1 style="color: white;">Deseja mesmo sair ?</h1>',
+            icon: 'warning',
+            showCancelButton: true,
+            focusConfirm: false,
+            confirmButtonText:
+            'Sim, quero sair!',
+            confirmButtonAriaLabel: 'Thumbs up, great!',
+            confirmButtonColor: '#FF4935',
+            cancelButtonText:
+            'Cancelar',
+            cancelButtonAriaLabel: 'Thumbs down',
+            cancelButtonColor: '#1c96c5',
+            background: '#474547',
+         }).then((result) => {
+            if (result.isConfirmed) {
+
+               window.location.href="../index.php?acao=logout";
+
+            }
+         })};
+
+</script>
+
 </body>
 </html>
