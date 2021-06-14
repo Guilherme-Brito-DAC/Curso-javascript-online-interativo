@@ -23,30 +23,30 @@
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-         <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarColor01">
-               <ul class="navbar-nav me-auto">
-                  <div class="header">
-                     <div style="display:flex;">
-                        <li class="nav-item">
-                           <a class="nav-link" href="home.php">Início</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="">Meus Códigos</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="perfil.php">Perfil</a>
-                        </li>
-                     </div>
-                     <li class="nav-item">
-                        <a class="nav-link" id="logout" >Sair</a>
-                     </li>
-                  </div>
-               </ul>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <div class="header">
+                            <div class="header_2">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.php">Início</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Meus Códigos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="perfil.php">Perfil</a>
+                                </li>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" id="logout">Sair</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
             </div>
-         </div>
-      </nav>
+        </nav>
       <div class="container col-12" style="margin-top: 3em; background-color: #2a2b2a; padding: 3em; width: 60em; display: grid; grid-template-columns: 33% 33% 33%; gap: 1em;">
          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="grid-column: 1/span 2;">
             <input type="button" class="btn-check" id="btnperfil" checked="" autocomplete="off">
@@ -57,10 +57,7 @@
             <label class="btn btn-primary" id ="lblDelete" for="btnDelete">Deletar Conta</label>
          </div>
          <div style="grid-row: 1/span 2; grid-columns: 3;" id="divimg">
-            <img class="foto" src="img/jooj.png"/>
-            <div class="form-group">
-               <input class="form-control" type="file" id="formFile" style="margin-top: 1em;">
-            </div>
+            <img class="foto" src="img/<?php echo $_SESSION['img'];?>" id="choose_img"/>
          </div>
          <div style="grid-column: 1/span 2; grid-row: 2;" id="divperfil">
             
@@ -118,6 +115,28 @@
          </div>
       </div>
       <script>
+
+         function imgselect(img_id)
+         {
+            window.location.href="../index.php?acao=updateIMG&img=" + img_id;
+         }
+
+         function ChooseImg(){
+            Swal.fire({
+            title: '<h1 style="color:white">Clique na imagem que você deseja</h1>',
+            html: '<div class="imgSelector"><img class="imgSel" src="img/1.jpg" value="1" onclick="imgselect(1)"/><img class="imgSel" src="img/2.jpg" value="2" onclick="imgselect(2)"/><img class="imgSel" src="img/3.jpg" value="3" onclick="imgselect(3)"/><img class="imgSel" src="img/4.jpg" value="4" onclick="imgselect(4)"/><img class="imgSel" src="img/5.jpg" value="5" onclick="imgselect(5)"/><img class="imgSel" src="img/6.jpg" value="6" onclick="imgselect(6)"/><img class="imgSel" src="img/7.jpg" value="7" onclick="imgselect(7)"/><img class="imgSel" src="img/8.jpg" value="8" onclick="imgselect(8)"/><img class="imgSel" src="img/9.jpg" value="9" onclick="imgselect(9)"/><img class="imgSel" src="img/10.jpg" value="10" onclick="imgselect(10)"/><img class="imgSel" src="img/11.jpg" value="11" onclick="imgselect(11)"/><img class="imgSel" src="img/13.jpg" value="13" onclick="imgselect(13)"/><img class="imgSel" src="img/14.jpg" value="14" onclick="imgselect(14)"/><img class="imgSel" src="img/15.jpg" value="15" onclick="imgselect(15)"/><img class="imgSel" src="img/16.jpg" value="16" onclick="imgselect(16)"/><img class="imgSel" src="img/17.jpg" value="17" onclick="imgselect(17)"/><img class="imgSel" src="img/18.jpg" value="18" onclick="imgselect(18)"/><img class="imgSel" src="img/19.jpg" value="19" onclick="imgselect(19)"/><img class="imgSel" src="img/20.jpg" value="20" onclick="imgselect(20)"/><img class="imgSel" src="img/21.jpg" value="21" onclick="imgselect(21)"/><img class="imgSel" src="img/22.jpg" value="22" onclick="imgselect(22)"/><img class="imgSel" src="img/23.jpg" value="23" onclick="imgselect(23)"/></div>',
+            background: '#474547',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Cancelar'
+            })
+         }
+
+         document.getElementById('choose_img').addEventListener("click", () => {
+          ChooseImg();
+         })
+         
+
+
          document.getElementById('lblperfil').addEventListener("click", () => {
            document.getElementById('divperfil').style.display= "block"
            document.getElementById('divimg').style.display= "block"
@@ -136,8 +155,7 @@
            document.getElementById('divsenha').style.display= "none"
            document.getElementById('divDelete').style.display= "Block"
          })
-      </script>
-      <script>
+
       function DeleteCon(){
          Swal.fire({
             title: "<h3 style='color: white'>Tem certeza? </h3>",
@@ -167,10 +185,6 @@
                console.log("Complete todos os campos animal")
             }
       })
-
-      </script>
-
-      <script>
 
          document.getElementById("logout").onclick = function () { 
             Swal.fire({

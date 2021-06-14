@@ -19,55 +19,53 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
       include "css/home.css";?>
    </style>
    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <script src="js/aulas_info.js"></script>
    <link rel="stylesheet" type="text/css" href="css/fakeLoader.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      
-      <ul class="navbar-nav me-auto">
-      <div class="header">
-      <div style="display:flex;">
-        <li class="nav-item">
-          <a class="nav-link" href="home.php">Início</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">Meus Códigos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="perfil.php">Perfil</a>
-        </li>
-        </div>
-
-      <div>
-      </div>
-
-        <li class="nav-item">
-          <a class="nav-link" id="logout">Sair</a>
-        </li>
-
-      </div>
-
-      </ul>
-  
-    </div>
-  </div>
-</nav>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                        <div class="header">
+                            <div class="header_2" style=>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="home.php">Início</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Meus Códigos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="perfil.php">Perfil</a>
+                                </li>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" id="logout">Sair</a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 <main id="main">
 
   <script>
+      function redirect(aula_id)
+      {
+        window.location.href = "aula.php?aula=" + aula_id;
+      }
 
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < aulas.length; i++){
+
       let item = `
-    <div class="list-item">
+    <div class="list-item" onclick="redirect(${i+1})" style="cursor:pointer">
       <div class="card text-white bg-dark mb-5" style="max-width: 20rem;">
         <div class="card-header"><img src="https://img.icons8.com/color/50/000000/code.png"/>Aula 0${i+1}</div>
           <div class="card-body">
             <img src="img/code.png" style="width:100%;margin-bottom:1rem"/>
-            <h4 class="card-title">Título</h4>
-            <p class="card-text">Texto</p>
-            <label style="opacity:0.5">2 min</label>
+            <h4 class="card-title">${aulas[i].titulo}</h4>
+            <p class="card-text">${aulas[i].descricao}</p>
+            <label style="opacity:0.5">${aulas[i].duracao}</label>
           </div>
       </div>
     </div>`

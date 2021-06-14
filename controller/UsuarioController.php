@@ -6,6 +6,86 @@ class UsuarioController{
         include 'view/login.php';
     }
 
+    public function imgSelect()
+    {
+        $obj = new Usuario(); 
+        $obj->setEmail($_SESSION['email']);
+        $img_id = $obj->getImgBD();
+
+        $img = "1.jpg";   
+        switch ($img_id) {
+            case 1:
+                $img = '1.jpg';  
+                break;
+            case 2:
+                $img = '2.jpg';  
+                break;
+            case 3:
+                $img = '3.jpg';  
+                break;
+            case 4:
+                $img = '4.jpg';  
+                break;
+            case 5:
+                $img = '5.jpg';  
+                break;
+            case 6:
+                $img = '6.jpg';  
+                break;
+            case 7:
+                $img = '7.jpg';  
+                break;
+            case 8:
+                $img = '8.jpg';  
+                break;
+            case 9:
+                $img = '9.jpg';  
+                break;
+            case 10:
+                $img = '10.jpg';  
+                break;
+            case 11:
+                $img = '11.jpg';  
+                break;
+            case 13:
+                $img = '13.jpg';  
+                break;
+            case 14:
+                $img = '14.jpg';  
+                break;
+            case 15:
+                $img = '15.jpg';  
+                break;
+            case 16:
+                $img = '16.jpg';  
+                break;
+            case 17:
+                $img = '17.jpg';  
+                break;
+            case 18:
+                $img = '18.jpg';  
+                break;
+            case 19:
+                $img = '19.jpg';  
+                break;
+            case 20:
+                $img = '20.jpg';  
+                break;
+            case 21:
+                $img = '21.jpg';  
+                break;
+            case 22:
+                $img = '22.jpg';  
+                break;
+            case 23:
+                $img = '23.jpg';  
+                break;
+        }
+    
+        $obj->setImg($img);
+        $_SESSION['img'] = $img;
+    }
+
     public function login()
     {
         $obj = new Usuario();
@@ -48,7 +128,9 @@ class UsuarioController{
                 $obj->setSenha($_POST["senha"]);
                 $obj->setId($id);
                 $obj->setNome($nome);
+                $obj->getImgBD();
    
+                $this->imgSelect();
                 header("Location: view/home.php");
             }
             else
@@ -115,11 +197,14 @@ class UsuarioController{
                     $_SESSION["senha"] = $_POST["senha"];
                     $_SESSION["nome"] = $_POST['nome'];
 
+
                     $obj->create();
 
                     $id = $obj->getIdBD();
                     $_SESSION["id"] = $id;
-   
+                    $obj->getImgBD();
+
+                    $this->imgSelect();
                     header("Location: view/home.php");
                 }     
             }
@@ -226,8 +311,8 @@ class UsuarioController{
         }
     }
 
-    public function delete(){
-
+    public function delete()
+    {
         session_start();
 
         if( !isset($_SESSION["id"]) )
@@ -282,8 +367,24 @@ class UsuarioController{
         }
     }
     
-    public function exit(){
-    
+    public function update_img()
+    {
+        if(isset($_GET['img']))
+        {
+            session_start();
+            $obj = new Usuario();
+            $obj->setId($_SESSION['id']);
+            $obj->updateIMG($_GET['img']);
+            $this->imgSelect();
+        }
+        else
+        {
+            header("location: ./view/perfil.php");
+        }
+    }
+
+    public function exit()
+    {
         $obj = new Usuario(); 
         $item = null;
     
@@ -296,7 +397,6 @@ class UsuarioController{
         session_destroy(); 
         header("location: ./");
         exit();
-    
     }
 }
 

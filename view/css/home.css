@@ -1,9 +1,3 @@
-#search{
-    border: 0;
-    border-radius: 0;
-    height: 2.9rem;
-}
-
 input{
     height: 100%;
 }
@@ -13,9 +7,11 @@ input{
     justify-content: space-between;
     width: 99vw;
 }
+
 a{
     cursor: pointer;
 }
+
 main{
     display:flex;
     flex-wrap: wrap;
@@ -23,6 +19,179 @@ main{
     padding: 5rem;
     width: 100%;
 }
+
 .list-item{
     margin-left: 1.5rem;
 }
+
+#div_aula{
+    display:grid;
+    padding-top: 3rem;
+    grid-template-columns: 70% 5% 25%;
+    margin-bottom: 2rem;
+}
+
+.proximasaulas{
+    grid-column: 3;
+    border-radius: 2%;
+}
+
+.aula{
+    grid-column: 1;
+    overflow-y:auto;
+}
+
+#aulamenu{
+    display:flex;
+    justify-content:space-between;
+}
+
+#main{
+    padding: 5rem;
+}
+
+.nextaula{
+    border-radius: 0.5rem;
+    background-color: #383938;
+    width: 100%;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: 0.25s;
+    margin-bottom: 1rem;
+}
+.nextaula:hover{
+    transform: scale(1.03);
+}
+
+#ativo{
+    border: 2.5px solid #1993c6;
+}
+
+.nextaula span h4{
+    display: table-cell;
+    vertical-align: middle 
+}
+
+#proxima_pagination{
+    margin-top: 1rem;
+    width: 100%;
+    display:none;
+}
+#video_aula{
+    width: 100%;
+    height: 65vh;
+}
+
+.foto{
+    border-radius:50%;
+    width:15rem;
+    cursor: pointer;
+}
+
+.header{
+    display:flex;
+}
+
+.header_2{
+    display: flex;
+}
+
+.atividade{
+    border-radius: 0.5rem;
+    background-color: #383938;
+    width: 100%;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: 0.25s;
+    color:white;
+}
+
+#editor{
+    width: 100%; 
+    height: 99vh;
+}
+
+#editor_tools{
+    z-index: 1;
+    width: 100%;
+}
+
+.imgSelector{
+    display:flex;
+    flex-wrap: wrap; 
+    gap: 2rem;
+}
+
+.imgSel{
+    border-radius: 50%;
+    width: 8rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.imgSel:hover{
+    transform: scale(1.05);
+}
+
+@media only screen and (max-width: 600px) {
+
+    #aulamenu{
+        display:block;
+        text-align: center;
+    }
+
+    .btn-group{
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    #main {
+        padding: 1rem;
+    }
+
+    #div_aula{
+        display:block;
+        grid-template-columns: 100%;
+        grid-row: 50% 50%;
+        padding-top: 1rem;
+    }
+
+    .proximasaulas{
+        display:none;
+    }
+
+    #proxima_pagination{
+        display:block;
+    }
+
+    #video_aula{
+        width: 100%;
+        height: 40vh;
+    }
+    nav{
+        padding: 0;
+        margin: 0;
+     }
+     .container-fluid{
+        padding: 0;
+        margin: 0;
+     }
+    .header{
+        display: block;
+        text-align: center;
+    }
+    .nav-item{
+        border-bottom: 4px solid #161616;
+        width: 100%;
+    }
+    .navbar-expand-lg{
+        padding: 0;
+        margin: 0;
+    }
+    .header_2{
+        display:block;
+    }
+}
+
+ 

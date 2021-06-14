@@ -7,6 +7,7 @@ require_once "model/Usuario.php";
 $app = new UsuarioController();
 
 if ( isset($_GET['acao']) ){
+
     switch ($_GET['acao']) {
         
         case 'create':
@@ -31,6 +32,10 @@ if ( isset($_GET['acao']) ){
 
         case 'logout':
             $app->exit();
+            break; 
+
+        case 'updateIMG':
+            $app->update_img();
             break;    
 
         default:
@@ -39,6 +44,7 @@ if ( isset($_GET['acao']) ){
     }
 
 }
-else{
+else
+{
     $app->start();
 }

@@ -4,6 +4,7 @@ class Usuario{
     private $id;
     private $email;
     private $nome;
+    private $img;
     private $senha;
     private $con;
 
@@ -22,7 +23,7 @@ class Usuario{
 
     public function create()
     {
-        $sql = $this->con->prepare("INSERT INTO usuario (email, nome ,senha) VALUES (?,?,?)");
+        $sql = $this->con->prepare("INSERT INTO usuario (email, nome ,senha ,img_id ) VALUES (?,?,?,1)");
         $sql->execute([$this->getEmail(), $this->getNome(),$this->getSenha()]);
 
         if($sql->errorCode()!='00000')
@@ -98,6 +99,22 @@ class Usuario{
 		}
 	}
 
+	public function updateIMG($img_id)
+	{
+		$sql = $this->con->prepare("UPDATE usuario SET img_id=? WHERE id=?");
+		$sql->execute([$img_id,  $this->getId()]);
+		$this->setImg($img_id);
+
+		if($sql->errorCode()!='00000')
+		{
+            echo $sql->errorInfo()[2];
+        }	
+		else
+		{
+           header("Location: ./view/perfil.php");
+		}
+	}
+
 	public function getIdBD()
 	{
 		$sql = $this->con->prepare("SELECT id FROM usuario WHERE email=?");
@@ -107,6 +124,18 @@ class Usuario{
         return $row->id;	
 	}
 
+	public function getImgBD()
+	{
+		$sql = $this->con->prepare("SELECT img_id FROM usuario WHERE email=?");
+        $sql->execute([$this->getEmail()]);
+        $row = $sql->fetchAll(PDO::FETCH_CLASS);
+
+		$this->setImg($row->img_id);
+		$_SESSION['img'] = $row->img_id;
+
+        return $row[0]->img_id;	
+	}
+
 	public function getNomeBD()
 	{
 		$sql = $this->con->prepare("SELECT nome FROM usuario WHERE email=?");
@@ -114,6 +143,18 @@ class Usuario{
         $row = $sql->fetchAll(PDO::FETCH_CLASS);
 
         return $row[0]->nome;	
+	}
+
+	public function getImg()
+	{
+		return $this->img;
+	}
+
+	public function setImg($img)
+	{
+		$this->img = $img;
+
+		return $this;
 	}
 
 	public function getId()
