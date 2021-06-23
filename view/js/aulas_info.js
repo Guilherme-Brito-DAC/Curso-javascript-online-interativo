@@ -1,8 +1,8 @@
 var aulas = [
     {
         titulo: 'Variáveis',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
-        texto: '',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
+        texto: ``,
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
             </div>`,
@@ -14,7 +14,7 @@ var aulas = [
     },
     {
         titulo: 'Função',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -27,7 +27,7 @@ var aulas = [
     },
     {
         titulo: 'if else',
-        video: 'https://www.youtube.com/embed/n_GFN3a0yj0',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -40,7 +40,7 @@ var aulas = [
     },
     {
         titulo: 'Switch',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -53,7 +53,7 @@ var aulas = [
     },
     {
         titulo: 'While',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -66,7 +66,7 @@ var aulas = [
     },
     {
         titulo: 'For',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -79,7 +79,7 @@ var aulas = [
     },
     {
         titulo: 'Object',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
@@ -92,7 +92,7 @@ var aulas = [
     },
     {
         titulo: 'Arrays',
-        video: 'https://www.youtube.com/embed/ngAi4JzL2rU',
+        video: 'https://www.youtube.com/embed/3K3MMtoG8rY',
         texto: '',
         enunciado:`<div class="atividade" id="atividade">
                 <p>Faça tal coisa blablalbla</p>
