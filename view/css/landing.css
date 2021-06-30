@@ -1,0 +1,50 @@
+.logojs{
+    width: 35rem;
+    margin-left: 2em;
+    box-shadow: 5px 5px 5px  black;
+}
+.grid-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+h1{
+    color: white;
+    margin-right: 6em;
+    margin-left: 25%;
+    text-align: center;
+}
+h3{
+    color: white;
+    padding: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+}
+h2{
+    color: white;
+    padding: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: justify;
+}
+.text{
+    justify-content: center;
+    margin-top: 5%;
+}
+.btn_entrar{
+    margin-top: 50px;
+    margin-left: 25em;
+    
+}
+
+@media only screen and (max-width: 600px) {
+    grid-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .btn_entrar{
+        margin-right: 100px;
+    }
+}
