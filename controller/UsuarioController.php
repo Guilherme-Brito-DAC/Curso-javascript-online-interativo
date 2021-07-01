@@ -3,7 +3,7 @@ class UsuarioController{
 
     public function start()
     {
-        include 'view/login.php';
+        header('Location: view/Landing.php');
     }
 
     public function imgSelect()
