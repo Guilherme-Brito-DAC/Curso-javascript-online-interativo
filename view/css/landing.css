@@ -4,22 +4,14 @@
     box-shadow: 5px 5px 5px  black;
 }
 .grid-container{
-    display: flex;
-    justify-content: space-between;
     margin-top: 50px;
+    columns: 2;
 }
 h1{
     color: white;
-    margin-right: 6em;
-    margin-left: 25%;
+    margin-right: 15%;
+    margin-left: 15%;
     text-align: center;
-}
-h3{
-    color: white;
-    padding: auto;
-    margin-left: 5%;
-    margin-right: 5%;
-    text-align: justify;
 }
 h2{
     color: white;
@@ -29,22 +21,30 @@ h2{
     text-align: justify;
 }
 .text{
+    margin-right: 10em;
     justify-content: center;
     margin-top: 5%;
 }
 .btn_entrar{
     margin-top: 50px;
-    margin-left: 25em;
-    
+    margin-left: 15em;
+    padding: auto;
+    width: 40px;
 }
 
-@media only screen and (max-width: 600px) {
-    grid-container{
-        display: flex;
-        justify-content: space-between;
+@media only screen and (max-width: 1238px) {
+  .text{
+      align-self: flex-end;
+  }
+  .grid-container{
+    margin-top: 50px;
+    columns: 1;
     }
-    
     .btn_entrar{
-        margin-right: 100px;
+        padding: auto;
+    }
+
+    body{
+        align-content: center;
     }
 }
