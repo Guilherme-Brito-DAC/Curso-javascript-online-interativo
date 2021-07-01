@@ -153,7 +153,6 @@ class UsuarioController{
         {
             echo $error->getMessage();
         }
-
     }
 
     public function create(){

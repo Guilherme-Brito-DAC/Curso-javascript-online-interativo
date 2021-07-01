@@ -25,7 +25,7 @@
             <div class="box">
                 <h1 id="titulo">Cadastro</h1>
                 <br />
-                <form action="./?acao=create" method="post" id="formulario">
+                <form action="../?acao=create" method="post" id="formulario">
                     <div class="form-group">
                         <div class="form-floating mb-3">
                             <input type="text" name="nome" class="form-control" id="floatingInput" value="" />
@@ -60,7 +60,7 @@
                     <br />
                     <button style="width: 100%;" id="btn_salvar" type="submit">Salvar</button>
                 </form>
-                <form action="./?acao=login" method="post" id="formulario_login">
+                <form action="../?acao=login" method="post" id="formulario_login">
                     <div class="form-floating">
                         <input type="email" name="email" class="form-control" id="email_log" value="" />
                         <label for="email_log">Email</label>
