@@ -48,9 +48,32 @@
                 <br />
                 <span>
                     <p id="conta">Já tem uma conta?</p>
-                    <a id="btn_form"><b>Clique aqui!</b></a>
+                    <a id="btn_form" href="cadastro.php" style="text-decoration:none"><b>Clique aqui!</b></a>
                 </span>
             </div>
         </center>
+        <script>
+
+			var SenhaShow = false;
+			function ShowSenha()
+			{
+				if(SenhaShow)
+				{
+					document.getElementById("txt_senha_login").type = 'password'
+					SenhaShow = false
+					document.getElementById("btn_senha_login").checked = false
+				}
+				else
+				{
+					document.getElementById("txt_senha_login").type = 'text'
+					SenhaShow = true
+					document.getElementById("btn_senha_login").checked = true
+				}
+			}
+
+			document.getElementById("btn_senha_login").onclick = ShowSenha
+			document.getElementById("lbl_senha_login").onclick = ShowSenha
+
+		</script>
  </body>
 </html>

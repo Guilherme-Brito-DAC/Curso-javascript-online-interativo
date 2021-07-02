@@ -1,10 +1,6 @@
 <?php
-   session_start();
-   
-   if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
-     header('Location: ./');
-     exit;
-   }
+
+   include "autenticacao.php";
    
    if(!isset($_GET['aula'])){
       header('Location: home.php');

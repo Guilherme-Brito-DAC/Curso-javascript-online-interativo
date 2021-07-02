@@ -6,6 +6,7 @@ class Usuario{
     private $nome;
     private $img;
     private $senha;
+    private $nivel;
     private $con;
 
     public function __construct()
@@ -23,8 +24,9 @@ class Usuario{
 
     public function create()
     {
-        $sql = $this->con->prepare("INSERT INTO usuario (email, nome ,senha ,img_id ) VALUES (?,?,?,1)");
-        $sql->execute([$this->getEmail(), $this->getNome(),$this->getSenha()]);
+        $sql = $this->con->prepare("INSERT INTO usuario (email, nome ,senha ,img_id , nivel) VALUES (?,?,?,1,?)");
+
+        $sql->execute([$this->getEmail(), $this->getNome(),$this->getSenha(),$this->getNivel()]);
 
         if($sql->errorCode()!='00000')
         {
@@ -143,6 +145,18 @@ class Usuario{
         $row = $sql->fetchAll(PDO::FETCH_CLASS);
 
         return $row[0]->nome;	
+	}
+
+	public function getNivel()
+	{
+		return $this->nivel;
+	}
+
+	public function setNivel($nivel)
+	{
+		$this->nivel = $nivel;
+
+		return $this;
 	}
 
 	public function getImg()

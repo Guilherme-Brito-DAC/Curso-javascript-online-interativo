@@ -1,11 +1,5 @@
 <?php
-session_start();
-
-if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
-  header('Location: ../');
-  exit;
-}
-
+   include "autenticacao.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,29 +71,6 @@ if(!isset($_SESSION['email']) || !isset($_SESSION['senha'])){
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="js/fakeLoader.min.js"></script>
-  <script>
-
-  var login = '<?php echo $_SESSION['login'] ?>'
-
-    function load(){
-      $('.myloader').fakeLoader({
-        timeToHide: 1500,
-        bgColor:'#222222',
-        spinner:'spinner6'
-      })
-    }
-
-  if(login)
-  {
-      if(login == "first")
-      {
-        load()
-        login = '<?php $_SESSION['login'] = "" ?>'
-      }
-  }
-      
-
-  </script>
 </main>
 
 <script>
