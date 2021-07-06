@@ -133,7 +133,6 @@ class Usuario{
         $row = $sql->fetchAll(PDO::FETCH_CLASS);
 
 		$this->setImg($row->img_id);
-		$_SESSION['img'] = $row->img_id;
 
         return $row[0]->img_id;	
 	}
