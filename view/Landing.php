@@ -19,7 +19,7 @@
                 <h1>Curso JavaScipt</h1>
                 <br>
                 <h2>Com este treinamento você será capaz de desenvolver seus códigos javascript para sites e sistemas que rodam no browser. O objetivo é fazer você conseguir testar seu código em tempo real. Se quer aprender tudo de javascript, está no lugar certo.</h2>
-                <button style="width: 20%;" class="btn_entrar" type="submit"><a style=" text-decoration: none; color: white;" href="login.php">Logar</a></button>
+                <a style=" text-decoration: none; color: white; width: 20%;" class="btn_entrar" href="login.php">Logar</a></button>
             </div>
         </div>
     </body>

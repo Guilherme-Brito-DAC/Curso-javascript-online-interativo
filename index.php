@@ -30,10 +30,6 @@ if ( isset($_GET['acao']) ){
             $app->login();
             break;    
 
-        case 'logout':
-            $app->exit();
-            break; 
-
         case 'updateIMG':
             $app->update_img();
             break;    
