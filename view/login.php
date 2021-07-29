@@ -47,7 +47,7 @@
                 </form>
                 <br />
                 <span>
-                    <p id="conta">Já tem uma conta?</p>
+                    <p id="conta">Não possui conta?</p>
                     <a id="btn_form" href="cadastro.php" style="text-decoration:none"><b>Clique aqui!</b></a>
                 </span>
             </div>

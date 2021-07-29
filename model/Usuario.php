@@ -132,7 +132,7 @@ class Usuario{
         $sql->execute([$this->getEmail()]);
         $row = $sql->fetchAll(PDO::FETCH_CLASS);
 
-		$this->setImg($row->img_id);
+		$this->setImg($row[0]->img_id);
 
         return $row[0]->img_id;	
 	}

@@ -93,7 +93,7 @@
          }).then((result) => {
             if (result.isConfirmed) {
 
-               window.location.href="../index.php?acao=logout";
+               window.location.href="logout.php";
 
             }
          })};
