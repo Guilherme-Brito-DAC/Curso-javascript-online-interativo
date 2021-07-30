@@ -77,7 +77,7 @@ if (!isset($_GET['aula'])) {
         </div>
 
         <div id="proxima_pagination">
-            <h6 style="color: white; text-align: center;">Próximos Aulas</h6>
+            <h6 style="color: white; text-align: center;">Próximas Aulas</h6>
             <div style="display: flex; justify-content: center;">
                 <ul class="pagination">
                     <li class="page-item disabled">
