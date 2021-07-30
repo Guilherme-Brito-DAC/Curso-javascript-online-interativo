@@ -77,7 +77,7 @@ if (!isset($_GET['aula'])) {
         </div>
 
         <div id="proxima_pagination">
-            <h6 style="color: white; text-align: center;">Próximas Aulas</h6>
+            <h6 style="color: white; text-align: center;">Próximos Aulas</h6>
             <div style="display: flex; justify-content: center;">
                 <ul class="pagination">
                     <li class="page-item disabled">
@@ -142,10 +142,12 @@ if (!isset($_GET['aula'])) {
 
                 <div id="div_comentarios" style="margin-top: 2rem;">
                     <div class="escrever">
-                        <form action="../?acao=create_comment" method="post">
-                            <input name="comentario" type="text" placeholder="Adicione um comentário" />
-                            <button type="submit" class="btn btn-info">Comentar</button>
-                            <button type="reset" class="btn btn-outline-danger">Cancelar</button>
+                        <form action="../?acao=create_comment" method="POST">
+                        <img style="height: 60px; width: 60px; border-radius: 30px;"
+                        src="img/<?php echo $_SESSION['img'];?>">
+                            <input name="comentario" type="text" style="margin-top: 0px; margin-bottom: 0px; height: 80px; width: 500px;" placeholder="Adicionar um comentário..." /> <br><br>
+                            <button type="submit" class="btn btn-info"><img src="https://img.icons8.com/android/24/ffffff/checkmark.png"></button>
+                            <button type="reset" class="btn btn-danger" ><img src="img/x.png" style="height: 23.5px; width: 25px;"></button>
                             <input name="aula_id" style="display: none" value=<?php echo $_GET["aula"]; ?>>
                         </form>
                     </div>
