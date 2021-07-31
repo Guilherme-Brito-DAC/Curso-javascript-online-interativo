@@ -49,7 +49,7 @@
             <input type="button" class="btn-check" id="btnDelete" autocomplete="off">
             <label class="btn btn-primary" id ="lblDelete" for="btnDelete">Deletar Conta</label>
          </div>
-         <div style="grid-row: 1/span 2; grid-columns: 3;" id="divimg">
+         <div style="grid-row: 1/span 2; grid-column: 3;" id="divimg">
             <img class="foto" src="img/<?php echo $_SESSION['img'];?>" id="choose_img"/>
          </div>
          <div style="grid-column: 1/span 2; grid-row: 2;" id="divperfil">
