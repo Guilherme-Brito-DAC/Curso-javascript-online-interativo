@@ -4,7 +4,6 @@ class Comentario{
     private $id;
     private $aula_id;
     private $usuario_id;
-    private $data_postagem;
     private $mensagem;
 
     public function __construct()
@@ -14,9 +13,9 @@ class Comentario{
 
     public function create()
     {
-        $sql = $this->con->prepare("INSERT INTO comentario (aula_id, usuario_id ,data_postagem ,mensagem) VALUES (?,?,?,?)");
+        $sql = $this->con->prepare("INSERT INTO comentario (aula_id, usuario_id ,data_postagem ,mensagem) VALUES (?,?,now(),?)");
 
-        $sql->execute([$this->getAula_id(),$this->getUsuario_id(),$this->getData_postagem(),$this->getMensagem(),]);
+        $sql->execute([$this->getAula_id(),$this->getUsuario_id(),$this->getMensagem(),]);
 
         if($sql->errorCode()!='00000')
         {
@@ -30,33 +29,18 @@ class Comentario{
 
 	public function read()
     {
-        $sql = $this->con->prepare("SELECT * FROM usuario WHERE id=?");
-        $sql->execute([$this->getId()]);
+        $sql = $this->con->prepare("SELECT * FROM comentario WHERE aula_id=?");
+        $sql->execute([$this->getAula_Id()]);
         $row = $sql->fetchObject();
 
         return $row;		
 	}
 
-	public function update($data_postagemm,$nome)
-    {
-        
-	}
-
 	public function delete()
     {
-		$sql = $this->con->prepare("DELETE FROM usuario WHERE id=?");
+		$sql = $this->con->prepare("DELETE FROM comentario WHERE id=?");
 		$sql->execute([$this->getId()]);
 
-		if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			session_destroy();
-			header("Location: ./view/login.php");
-			exit();
-		}
 	}
 
 	public function getAula_id()
@@ -103,18 +87,6 @@ class Comentario{
 	public function setMensagem($mensagem)
 	{
 		$this->mensagem = $mensagem;
-
-		return $this;
-	}
-
-	public function getData_postagem()
-	{
-		return $this->data_postagem;
-	}
-
-	public function setData_postagem($data_postagem)
-	{
-		$this->data_postagem = $data_postagem;
 
 		return $this;
 	}

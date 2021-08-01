@@ -2,15 +2,21 @@
 class ComentarioController{
 
     public function create(){
-/*       $obj = new Comentario();
+       $obj = new Comentario();
         $usuario = new Usuario();
-        $obj -> setAula_id();
-        $obj -> setUsuario_id($usuario->getId());
+        $obj -> setAula_id($_POST["aula_id"]);
+        session_start();
+        $obj -> setUsuario_id($_SESSION["id"]);
         $obj -> setMensagem($_POST["comentario"]);
-        $obj -> setData_postagem(date("d/m/Y H:i"));
         $obj -> create();
-*/
-        echo $_POST["aula_id"];
+
+        header("Location: ./view/aula.php?aula=" .$_POST["aula_id"]);
+    }
+
+    public function read(){
+        $obj = new Comentario();
+        $obj -> setAula_id($_GET["aula"]);
+        $obj -> read();        
     }
 
     public function update(){

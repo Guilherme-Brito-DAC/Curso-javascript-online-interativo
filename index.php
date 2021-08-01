@@ -21,6 +21,14 @@ if ( isset($_GET['acao']) ){
             $Comm->create();
             break;
 
+        case 'delete_comment':
+            $Comm->delete();
+            break;
+
+        case 'update_comment':
+            $Comm->update();
+            break;
+
         case 'update':
             $app->update();
             break;

@@ -142,14 +142,23 @@ if (!isset($_GET['aula'])) {
 
                 <div id="div_comentarios" style="margin-top: 2rem;">
                     <div class="escrever">
-                        <form action="../?acao=create_comment" method="POST">
-                        <img style="height: 60px; width: 60px; border-radius: 30px;"
-                        src="img/<?php echo $_SESSION['img'];?>">
-                            <input name="comentario" type="text" style="margin-top: 0px; margin-bottom: 0px; height: 80px; width: 500px;" placeholder="Adicionar um comentário..." /> <br><br>
-                            <button type="submit" class="btn btn-info"><img src="https://img.icons8.com/android/24/ffffff/checkmark.png"></button>
-                            <button type="reset" class="btn btn-danger" ><img src="img/x.png" style="height: 23.5px; width: 25px;"></button>
+                        <form action="../?acao=create_comment" method="POST" style="display: flex; gap: 20px;">
+                            <img style="height: 60px; width: 60px; border-radius: 30px;" src="img/<?php echo $_SESSION['img'];?>">
+                            <input name="comentario" type="text" style="margin-top: 5px; margin-bottom: 0px; height: 50px; width: 500px;" placeholder="Adicionar um comentário..." /> <br><br>
+                            <button type="submit" class="btn btn-info" style="transform: scale(0.88);"><img src="https://img.icons8.com/android/24/ffffff/checkmark.png"></button>
                             <input name="aula_id" style="display: none" value=<?php echo $_GET["aula"]; ?>>
                         </form>
+                    </div>
+                    <div class="comentarios_escritos">
+                        <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
+                            <img style="height: 45px; width: 45px; border-radius: 30px;" src="img/<?php echo $_SESSION['img'];?>">
+                            <div class="coment">
+                                <h4>Nome</h4>
+                                <h5>C O M E N T A R I O</h5>
+                            </div>
+                            <button type="" class="btn btn-warning" style="margin-left: 280px; width: 100px; height: 50px;"><a href="../?acao=update_comment">editar</input>
+                            <button type="" class="btn btn-danger" style="transform: scale(0.8); "><a href="../?acao=delete_comment"><img src="https://img.icons8.com/ios/40/000000/delete--v1.png"/></a></button>
+                        </div>
                     </div>
                 </div>
             </div>
