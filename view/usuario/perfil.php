@@ -10,7 +10,6 @@
       <title>Perfil</title>
       <style>
          <?php include "../css/bootstrap.min.css";
-            include "../css/perfil.css";
             include "../css/home.css";?>
       </style>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

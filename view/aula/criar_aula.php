@@ -17,26 +17,30 @@
    <body>
       <?php include "../prop/navbar.php" ?>
       <br/>
-      <form method="post" action="../../?acao=create_aula" >
+      <form class="container-md" style="text-align: center" method="post" action="../../?acao=create_aula" >
+      <div class="box">
          <div class="form-group">
-            <h4 style="color: white;">
+            <h3 style="color: white;">
             Título
-            <h4>
-            <input name="titulo" type="text" />
+            <h3>
+            <input class="texto" name="titulo" type="text" required />
          </div>
+         <br>
          <div class="form-group">
-            <h4 style="color: white;">
+            <h3 style="color: white;">
             Texto
-            <h4>
-            <textarea class="text" id="exampleTextarea" rows="3"></textarea>
+            <h3>
+            <textarea class="text" style="width: 100%" name="texto" id="exampleTextarea" rows="3" required ></textarea>
          </div>
-         </div>
+         <br>
          <div class="form-group">
-            <h4 style="color: white;">
+            <h3 style="color: white;">
             Descrição
-            <h4>
-            <input name="descricao" type="text" />
+            <h3>
+            <input class="texto" name="descricao" type="text" required />
          </div>
-         <button style="width: 5%;" id="btn_salvar" type="submit">Criar</button>
+         <br>
+         <button style="width: 10%; height: 40%; font-size: 22px" id="btn_salvar" type="submit">Criar</button>
+         </div>
       </form>
 </html>

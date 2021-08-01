@@ -15,8 +15,9 @@ class Aula{
 
     public function create()
     {
-        $sql = $this->con->prepare("INSERT INTO aula (titulo, descricao , texto , data_de_postagem ,professor_id) VALUES (?,?,?,now(),?)");
-        $sql->execute([$this->getTitulo(),$this->getDescricao(),$this->getTexto(),$this->getProfessor_id(),]);
+        $sql = $this->con->prepare("INSERT INTO aula (titulo, descrição , texto , professor_id , data_de_postagem) VALUES (?,?,?,?,now())");
+        $sql->execute([$this->getTitulo(),$this->getDescricao(),$this->getTexto(),$this->getProfessor_id()]);
+
     }
 
 	public function read()
