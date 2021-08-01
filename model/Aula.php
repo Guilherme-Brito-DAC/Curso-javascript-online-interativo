@@ -16,29 +16,19 @@ class Aula{
     public function create()
     {
         $sql = $this->con->prepare("INSERT INTO aula (titulo, descricao , texto , data_de_postagem ,professor_id) VALUES (?,?,?,now(),?)");
-
         $sql->execute([$this->getTitulo(),$this->getDescricao(),$this->getTexto(),$this->getProfessor_id(),]);
-
-        if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			header("Location: ./");
-   	 	}
     }
 
 	public function read()
     {
-        $sql = $this->con->prepare("SELECT * FROM aula WHERE id=?");
-        $sql->execute([$this->getId()]);
-        $row = $sql->fetchObject();
+        $sql = $this->con->prepare("SELECT * FROM aula");
+        $sql->execute();
+        $row = $sql->fetchAll();
 
         return $row;		
 	}
 
-	public function update($data_postagemm,$nome)
+	public function update()
     {
         
 	}
@@ -47,17 +37,6 @@ class Aula{
     {
 		$sql = $this->con->prepare("DELETE FROM aula WHERE id=?");
 		$sql->execute([$this->getId()]);
-
-		if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			session_destroy();
-			header("Location: ./view/login.php");
-			exit();
-		}
 	}
 
 	public function getId()

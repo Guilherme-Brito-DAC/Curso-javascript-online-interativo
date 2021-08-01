@@ -15,8 +15,13 @@ class ComentarioController{
 
     public function read(){
         $obj = new Comentario();
+
         $obj -> setAula_id($_GET["aula"]);
-        $obj -> read();        
+        session_start();
+
+        $_SESSION["aula"] = $obj -> read(); 
+
+        header("Location: ./view/aula/aula.php?aula=" . $_GET["aula"]);
     }
 
     public function update(){

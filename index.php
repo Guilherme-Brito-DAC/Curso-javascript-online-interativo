@@ -2,23 +2,30 @@
 
 require_once "inc/config.php";
 require_once "controller/UsuarioController.php";
-require_once "model/Usuario.php";
 require_once "controller/ComentarioController.php";
+require_once "controller/AulaController.php";
+require_once "model/Usuario.php";
+require_once "model/Aula.php";
 require_once "model/Comentario.php";
 
 $app = new UsuarioController();
 $Comm = new ComentarioController();
+$Aula = new AulaController();
 
-if ( isset($_GET['acao']) ){
+if (isset($_GET['acao'])) {
 
     switch ($_GET['acao']) {
-        
+
         case 'create':
             $app->create();
             break;
-        
+
         case 'create_comment':
             $Comm->create();
+            break;
+
+        case 'read_comment':
+            $Comm->read();
             break;
 
         case 'delete_comment':
@@ -27,6 +34,22 @@ if ( isset($_GET['acao']) ){
 
         case 'update_comment':
             $Comm->update();
+            break;
+
+        case 'create_aula':
+            $Aula->create();
+            break;
+
+        case 'read_aula':
+            $Aula->read();
+            break;
+
+        case 'delete_aula':
+            $Aula->delete();
+            break;
+
+        case 'update_aula':
+            $Aula->update();
             break;
 
         case 'update':
@@ -40,22 +63,19 @@ if ( isset($_GET['acao']) ){
         case 'delete':
             $app->delete();
             break;
-        
+
         case 'login':
             $app->login();
-            break;    
+            break;
 
         case 'updateIMG':
             $app->update_img();
-            break;    
+            break;
 
         default:
             $app->start();
             break;
     }
-
-}
-else
-{
+} else {
     $app->start();
 }

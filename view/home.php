@@ -17,35 +17,7 @@
    <link rel="stylesheet" type="text/css" href="css/fakeLoader.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-auto">
-                        <div class="header">
-                            <div class="header_2">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="home.php">Início</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="">Meus Códigos</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="perfil.php">Perfil</a>
-                                </li>
-                            </div>
-                            <div class="criar_sair">
-                            <li class="nav-item">           
-                                <a class="nav-link" href="criar_aula.php " style=>Criar Aula</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="logout">Sair</a>
-                            </li>
-                          </div>  
-                        </div>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
 <main id="main">
 
   <script>

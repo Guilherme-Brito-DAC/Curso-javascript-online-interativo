@@ -14,28 +14,10 @@ class Usuario{
         $this->con = new PDO(SERVIDOR, USUARIO, SENHA);
     }
 
-    public function all()
-    {
-        $sql = $this->con->prepare("SELECT * FROM usuario");
-        $sql->execute();
-        $rows = $sql->fetchAll(PDO::FETCH_CLASS);
-        return $rows;
-    }
-
     public function create()
     {
         $sql = $this->con->prepare("INSERT INTO usuario (email, nome ,senha ,img_id , nivel) VALUES (?,?,?,1,?)");
-
         $sql->execute([$this->getEmail(), $this->getNome(),$this->getSenha(),$this->getNivel()]);
-
-        if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			header("Location: ./");
-   	 	}
     }
 
 	public function read()
@@ -51,54 +33,18 @@ class Usuario{
     {
 		$sql = $this->con->prepare("UPDATE usuario SET email=?, nome=? WHERE id=?");
 		$sql->execute([$email, $nome, $this->getId()]);
-
-		if($sql->errorCode()!='00000')
-		{
-            echo $sql->errorInfo()[2];
-        }
-		else
-		{
-            $this->setEmail($email);
-            $this->setNome($nome);
-            $_SESSION["email"] = $email;
-            $_SESSION["nome"] = $nome;
-
-           header("Location: ./view/perfil.php");
-		}
 	}
 
 	public function updateSenha($senha)
 	{
 		$sql = $this->con->prepare("UPDATE usuario SET senha=? WHERE id=?");
 		$sql->execute([$senha,  $this->getId()]);
-
-		if($sql->errorCode()!='00000')
-		{
-            echo $sql->errorInfo()[2];
-        }
-		else
-		{
-		   session_destroy();
-           header("Location: ./view/login.php");
-		   exit();
-		}
 	}
 
 	public function delete()
     {
 		$sql = $this->con->prepare("DELETE FROM usuario WHERE id=?");
 		$sql->execute([$this->getId()]);
-
-		if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			session_destroy();
-			header("Location: ./view/login.php");
-			exit();
-		}
 	}
 
 	public function updateIMG($img_id)
@@ -106,44 +52,15 @@ class Usuario{
 		$sql = $this->con->prepare("UPDATE usuario SET img_id=? WHERE id=?");
 		$sql->execute([$img_id,  $this->getId()]);
 		$this->setImg($img_id);
-
-		if($sql->errorCode()!='00000')
-		{
-            echo $sql->errorInfo()[2];
-        }	
-		else
-		{
-           header("Location: ./view/perfil.php");
-		}
 	}
 
-	public function getIdBD()
-	{
-		$sql = $this->con->prepare("SELECT id FROM usuario WHERE email=?");
-        $sql->execute([$this->getEmail()]);
-        $row = $sql->fetchObject();
+	public function getInfo(){
 
-        return $row->id;	
-	}
-
-	public function getImgBD()
-	{
-		$sql = $this->con->prepare("SELECT img_id FROM usuario WHERE email=?");
+		$sql = $this->con->prepare("SELECT * FROM usuario WHERE email=?");
         $sql->execute([$this->getEmail()]);
         $row = $sql->fetchAll(PDO::FETCH_CLASS);
 
-		$this->setImg($row[0]->img_id);
-
-        return $row[0]->img_id;	
-	}
-
-	public function getNomeBD()
-	{
-		$sql = $this->con->prepare("SELECT nome FROM usuario WHERE email=?");
-        $sql->execute([$this->getEmail()]);
-        $row = $sql->fetchAll(PDO::FETCH_CLASS);
-
-        return $row[0]->nome;	
+        return $row[0];	
 	}
 
 	public function getNivel()

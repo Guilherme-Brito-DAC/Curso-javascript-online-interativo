@@ -14,17 +14,7 @@ class Comentario{
     public function create()
     {
         $sql = $this->con->prepare("INSERT INTO comentario (aula_id, usuario_id ,data_postagem ,mensagem) VALUES (?,?,now(),?)");
-
         $sql->execute([$this->getAula_id(),$this->getUsuario_id(),$this->getMensagem(),]);
-
-        if($sql->errorCode()!='00000')
-        {
-            echo $sql->errorInfo()[2];
-        }
-        else
-        {
-			header("Location: ./");
-   	 	}
     }
 
 	public function read()
