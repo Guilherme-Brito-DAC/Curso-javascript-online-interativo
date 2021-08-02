@@ -96,17 +96,21 @@ foreach ($_SESSION["comentarios"] as $element) {
                             <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
                                 <div class="comment">
                                     <p><?= $comentarios[$i]["nome"] ?></p>
-                                    <p><?= $comentarios[$i]["mensagem"] ?></p>
+                                    <input type="text" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>"/>
                                 </div>
 
                                 <?php
                                 if ($comentarios[$i]["usuario_id"] == $_SESSION["id"]) {
                                 ?>
+                                    <button class="btn btn-primary" type="button" name="edit" value="" id="edit">
+                                        <img src="https://img.icons8.com/material-outlined/30/ffffff/edit--v1.png" />
+                                    </button>
                                     <form action="../../?acao=delete_comment" method="post" style="float:right">
-                                        <button type="submit" name="id" value="<?= $comentarios[$i]["id"] ?>" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/ffffff/delete--v1.png" /></button>
+                                        <button type="submit" name="id" value="<?= $comentarios[$i]["id"] ?>" class="btn btn-danger" style="transform: scale(0.8); ">
+                                            <img src="https://img.icons8.com/ios/40/ffffff/delete--v1.png" />
+                                        </button>
                                         <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
                                     </form>
-
                                 <?php } ?>
                             </div>
 
@@ -170,6 +174,23 @@ foreach ($_SESSION["comentarios"] as $element) {
     <script src="../js/monaco/min/vs/editor/editor.main.js"></script>
     <script src="../js/aula.js"></script>
     <script src="../js/script.js"></script>
+    <script>
+    let isEditting = false
+    document.getElementById("edit").onclick = function(){ 
+        if (isEditting)
+        {
+            isEditting = false
+            document.getElementById("edit").readOnly = true
+            document.getElementById("edit").className = "edit_comment"
+        }
+        else{
+            isEditting = true
+            document.getElementById("edit").readOnly = false
+            document.getElementById("edit").className = "andresson"
+            console.log("jooj")
+        }
+        };
+    </script>
 </body>
 
 </html>

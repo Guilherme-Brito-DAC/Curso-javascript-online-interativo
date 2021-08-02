@@ -158,6 +158,20 @@ main{
     color: white;
 }
 
+.edit_comment{
+    background: none;
+    border: 0px;
+    color: white;
+}
+
+.edit_comment:focus{
+    background: none;
+    border: 0px;
+    color: white;
+    outline: none;
+}
+
+
 @media only screen and (max-width: 600px) {
 
     #aulamenu{
