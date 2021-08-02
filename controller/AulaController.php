@@ -22,6 +22,9 @@ class AulaController{
 
         session_start();
 
+        $Comm = new ComentarioController();
+        $Comm->read();
+
         $_SESSION["aulas"] = $aulas;
 
         header('Location: view/usuario/home.php');

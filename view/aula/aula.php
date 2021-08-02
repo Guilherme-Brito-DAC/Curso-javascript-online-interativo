@@ -14,7 +14,14 @@ foreach ( $_SESSION["aulas"] as $element ) {
     }
 }
 
-var_dump($_SESSION["comentarios"]);
+$comentarios = [];
+
+foreach ( $_SESSION["comentarios"] as $element ) {
+    if ( $_GET["aula"] == $element["aula_id"] ) {
+        array_push($comentarios, $element);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -75,24 +82,31 @@ var_dump($_SESSION["comentarios"]);
                 <div id="div_comentarios" style="margin-top: 2rem;display:none">
                     <div class="escrever">
                         <form action="../../?acao=create_comment" method="POST" style="display: flex; gap: 20px;">
-                            <img style="height: 60px; width: 60px; border-radius: 30px;" src="../img/<?php echo $_SESSION['img']?>.jpg">
                             <input name="comentario" type="text" style="margin-top: 5px; margin-bottom: 0px; height: 50px; width: 500px;" placeholder="Adicionar um comentário..." /> <br><br>
                             <button type="submit" class="btn btn-info" style="transform: scale(0.88);"><img src="https://img.icons8.com/android/24/ffffff/checkmark.png"></button>
                             <input name="aula_id" style="display: none" value=<?php echo $_GET["aula"]; ?>>
                         </form>
                     </div>
                     <div class="comentarios_escritos">
-                        <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
-                            <img style="height: 50px; width: 50px; border-radius: 30px;" src="../img/<?php echo $_SESSION['img']?>.jpg">
+
+                        <?php  
+                        for ($i = 0; $i < sizeof($comentarios); $i++) {
+                        ?>
+
+                            <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
                             <div class="comment">
-                                <p>Nome</p>
-                                <p>C O M E N T A R I O</p>
+                                <p><?= $comentarios[$i]["nome"]?></p>
+                                <p><?= $comentarios[$i]["mensagem"]?></p>
                             </div>
-                            <button type="" class="btn btn-primary" style="margin-left: 280px; width: 100px; height: 50px;"><a style="text-decoration:none;color:white" href="../?acao=update_comment">editar</input>
-                            <form action="../../?acao=delete_comment" method="post">
+
+                            <form action="../../?acao=delete_comment" method="post" style="float:right">
                                 <button type="submit" name="id" value="" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/000000/delete--v1.png"/></button>
                             </form>
+
                         </div>
+
+                        <?php } ?>
+
                     </div>
                 </div>
             </div>
@@ -103,7 +117,7 @@ var_dump($_SESSION["comentarios"]);
                 <script>
                     function redirect(aula_id)
                     {
-                        window.location.href = "../aula/aula.php?aula=" + aula_id;
+                        window.location.href = "aula.php?aula=" + aula_id;
                     }
                     </script>
 

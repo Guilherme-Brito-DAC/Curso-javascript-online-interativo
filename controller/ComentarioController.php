@@ -4,19 +4,28 @@ class ComentarioController{
     public function create(){
        $obj = new Comentario();
         $usuario = new Usuario();
+
         $obj -> setAula_id($_POST["aula_id"]);
+
         session_start();
+
         $obj -> setUsuario_id($_SESSION["id"]);
+
+        $obj -> setNome($_SESSION["nome"]);
+
         $obj -> setMensagem($_POST["comentario"]);
+
         $obj -> create();
 
         header("Location: ./view/aula/aula.php?aula=" .$_POST["aula_id"]);
     }
 
     public function read(){
+
         $obj = new Comentario();
+        
         session_start();
-        header("../usuario/perfil.php");
+
         $_SESSION["comentarios"] = $obj -> read();
     }
 

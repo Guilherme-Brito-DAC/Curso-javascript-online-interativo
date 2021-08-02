@@ -38,7 +38,6 @@ if (isset($_GET['acao'])) {
             break;
 
         case 'read_aula':
-            $Comm->read();
             $Aula->read();
             break;
 
