@@ -79,7 +79,7 @@ foreach ($_SESSION["comentarios"] as $element) {
                     <?php echo stripslashes($aula["texto"]); ?>
                 </div>
 
-                <div id="div_comentarios" style="margin-top: 2rem;display:none">
+                <div id="div_comentarios" style="margin-top: 2rem; display:none;">
                     <div class="escrever">
                         <form action="../../?acao=create_comment" method="POST" style="display: flex; gap: 20px;">
                             <input name="comentario" type="text" style="margin-top: 5px; margin-bottom: 0px; height: 50px; width: 500px;" placeholder="Adicionar um comentário..." /> <br><br>
@@ -88,18 +88,42 @@ foreach ($_SESSION["comentarios"] as $element) {
                         </form>
                     </div>
                     <div class="comentarios_escritos">
-
                         <?php
                         for ($i = 0; $i < sizeof($comentarios); $i++) {
                         ?>
+                            <script>
+                                let isEditting = false
 
+                                document.getElementById("edit").onclick = function(e) {
+
+                                    console.log(e)
+
+                                    if (isEditting == true) {
+                                        document.getElementById("edit2").readOnly = true
+                                        document.getElementById("edit2").className = "edit_comment"
+                                        document.getElementById("btn_salvar").style.display = "none"
+                                        isEditting = false
+                                    } else {
+                                        document.getElementById("edit2").readOnly = false
+                                        document.getElementById("edit2").className = ""
+                                        document.getElementById("btn_salvar").style.display = "block"
+                                        isEditting = true
+                                    }
+
+                                }
+                            </script>
                             <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
                                 <div class="comment">
-                                    <p><?= $comentarios[$i]["nome"] ?></p>
+                                    <div style="display: flex; gap: 10px;">
+                                        <p><?= $comentarios[$i]["nome"] ?></p>
+                                        <p style="opacity: 0.5;"><?= $comentarios[$i]["data_postagem"] ?></p>
+                                    </div>
 
                                     <form action="../../?acao=update_comment" method="post" style="display:flex;">
                                         <input type="text" id="edit2" name="mensagem" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>" />
-                                        <button type="submit" name="id" id="btn_salvar" style="display:none" value="<?= $comentarios[$i]["id"] ?>">Salvar</button>
+                                        <button type="submit" name="id" id="btn_salvar" style="border-radius: 0px; margin-left: 1em; height:51px; margin-bottom: 2.4em; display:none" value="<?= $comentarios[$i]["id"] ?>">
+                                            <img src="https://img.icons8.com/android/24/ffffff/checkmark.png">
+                                        </button>
                                         <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
                                     </form>
                                 </div>
@@ -107,7 +131,8 @@ foreach ($_SESSION["comentarios"] as $element) {
                                 <?php
                                 if ($comentarios[$i]["usuario_id"] == $_SESSION["id"]) {
                                 ?>
-                                    <button class="btn btn-primary" type="button" name="edit" value="" id="edit">
+                                <div style="margin-left: 21em;">
+                                    <button class="btn btn-primary" type="button" name="edit" value="" id="edit" style="margin-top: 5px;">
                                         <img src="https://img.icons8.com/material-outlined/30/ffffff/edit--v1.png" />
                                     </button>
                                     <form action="../../?acao=delete_comment" method="post" style="float:right">
@@ -116,6 +141,7 @@ foreach ($_SESSION["comentarios"] as $element) {
                                         </button>
                                         <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
                                     </form>
+                                </div>
                                 <?php } ?>
                             </div>
 
@@ -179,26 +205,6 @@ foreach ($_SESSION["comentarios"] as $element) {
     <script src="../js/monaco/min/vs/editor/editor.main.js"></script>
     <script src="../js/aula.js"></script>
     <script src="../js/script.js"></script>
-
-    <script>
-        let isEditting = false
-
-        document.getElementById("edit").onclick = function() {
-
-            if (isEditting == true) {
-                document.getElementById("edit2").readOnly = true
-                document.getElementById("edit2").className = "edit_comment"
-                document.getElementById("btn_salvar").style.display = "none"
-                isEditting = false
-            } else {
-                document.getElementById("edit2").readOnly = false
-                document.getElementById("edit2").className = ""
-                document.getElementById("btn_salvar").style.display = "block"
-                isEditting = true
-            }
-
-        }
-    </script>
 </body>
 
 </html>
