@@ -96,7 +96,12 @@ foreach ($_SESSION["comentarios"] as $element) {
                             <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
                                 <div class="comment">
                                     <p><?= $comentarios[$i]["nome"] ?></p>
-                                    <input type="text" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>"/>
+
+                                    <form action="../../?acao=update_comment" method="post" style="display:flex;">
+                                        <input type="text" id="edit2" name="mensagem" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>" />
+                                        <button type="submit" name="id" id="btn_salvar" style="display:none" value="<?= $comentarios[$i]["id"] ?>">Salvar</button>
+                                        <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
+                                    </form>
                                 </div>
 
                                 <?php
@@ -174,22 +179,25 @@ foreach ($_SESSION["comentarios"] as $element) {
     <script src="../js/monaco/min/vs/editor/editor.main.js"></script>
     <script src="../js/aula.js"></script>
     <script src="../js/script.js"></script>
+
     <script>
-    let isEditting = false
-    document.getElementById("edit").onclick = function(){ 
-        if (isEditting)
-        {
-            isEditting = false
-            document.getElementById("edit").readOnly = true
-            document.getElementById("edit").className = "edit_comment"
+        let isEditting = false
+
+        document.getElementById("edit").onclick = function() {
+
+            if (isEditting == true) {
+                document.getElementById("edit2").readOnly = true
+                document.getElementById("edit2").className = "edit_comment"
+                document.getElementById("btn_salvar").style.display = "none"
+                isEditting = false
+            } else {
+                document.getElementById("edit2").readOnly = false
+                document.getElementById("edit2").className = ""
+                document.getElementById("btn_salvar").style.display = "block"
+                isEditting = true
+            }
+
         }
-        else{
-            isEditting = true
-            document.getElementById("edit").readOnly = false
-            document.getElementById("edit").className = "andresson"
-            console.log("jooj")
-        }
-        };
     </script>
 </body>
 

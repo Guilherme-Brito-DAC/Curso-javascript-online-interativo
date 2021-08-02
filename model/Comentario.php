@@ -18,6 +18,12 @@ class Comentario{
         $sql->execute([$this->getAula_id(),$this->getUsuario_id(),$this->getMensagem(),$this->getNome()]);
     }
 
+	public function update()
+    {
+        $sql = $this->con->prepare("UPDATE comentario SET mensagem=? WHERE id=?");
+		$sql->execute([$this->getMensagem(),$this->getId()]);
+    }
+
 	public function read()
     {
         $sql = $this->con->prepare("SELECT * FROM comentario");

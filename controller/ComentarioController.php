@@ -30,49 +30,17 @@ class ComentarioController{
 
     public function update(){
         
-        $obj = new Usuario;
+        $obj = new Comentario;
+        $obj -> setId($_POST["id"]);
+        $obj -> setMensagem($_POST["mensagem"]);
+        $obj -> update();
+
         session_start();
+        
+        $this -> read();
 
-        if($_POST['email'] == $_SESSION['email']){
-
-            $obj->setId($_SESSION["id"]);
-            $obj->update($_POST["email"],$_POST["nome"]);
-
-        }else
-        {
-            
-            try
-            {
-    
-            $con = $obj->getCon();
-    
-            $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    
-            $query = "SELECT * FROM usuario WHERE email = :email";
-            
-            $user = $con->prepare($query);
-
-            $user->execute(array('email' => $_POST["email"]));
-    
-            $count = $user->rowCount();
-    
-                if( $count > 0 )
-                {
-                    echo "Email já cadastrado!";
-                    header("Location: ./view/perfil.php");
-                }
-                else
-                {
-                    session_start();
-                    $obj->setId($_SESSION["id"]);
-                    $obj->update($_POST["email"],$_POST["nome"]);
-                }     
-            }
-            catch(PDOException $error)
-            {
-                echo $error->getMessage();
-            }
-        }
+        header("Location: ./view/aula/aula.php?aula=" .$_POST["aula_id"]);
+        
     }
 
     public function delete()
