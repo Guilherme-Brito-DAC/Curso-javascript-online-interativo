@@ -19,9 +19,6 @@ class AulaController{
     {
         $obj = new Aula();
         $aulas = $obj->read();
-
-        session_start();
-
         $Comm = new ComentarioController();
         $Comm->read();
 

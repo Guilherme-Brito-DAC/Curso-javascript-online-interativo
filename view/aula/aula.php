@@ -3,8 +3,8 @@
 
 include "../usuario/autenticacao.php";
 
-if (!isset($_GET['aula'])) {
-    header('Location: home.php');
+if ($_GET['aula'] == ""||!isset($_GET['aula'])) {
+    header('Location: ../usuario/home.php');
     exit;
 }
 
@@ -100,7 +100,8 @@ foreach ( $_SESSION["comentarios"] as $element ) {
                             </div>
 
                             <form action="../../?acao=delete_comment" method="post" style="float:right">
-                                <button type="submit" name="id" value="" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/000000/delete--v1.png"/></button>
+                                <button type="submit" name="id" value="<?=$comentarios[$i]["id"] ?>" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/ffffff/delete--v1.png"/></button>
+                                <input type="" name="aula_id" value="<?=$_GET["aula"]?>" style="display: none;"/>
                             </form>
 
                         </div>

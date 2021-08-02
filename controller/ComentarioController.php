@@ -2,8 +2,7 @@
 class ComentarioController{
 
     public function create(){
-       $obj = new Comentario();
-        $usuario = new Usuario();
+        $obj = new Comentario();
 
         $obj -> setAula_id($_POST["aula_id"]);
 
@@ -17,14 +16,14 @@ class ComentarioController{
 
         $obj -> create();
 
+        $this -> read();
+
         header("Location: ./view/aula/aula.php?aula=" .$_POST["aula_id"]);
     }
 
     public function read(){
 
         $obj = new Comentario();
-        
-        session_start();
 
         $_SESSION["comentarios"] = $obj -> read();
     }
@@ -81,7 +80,12 @@ class ComentarioController{
         $obj = new Comentario;
         $obj -> setId($_POST["id"]);
         $obj -> delete();
-        header("./view/aula/aula.php");
+
+        session_start();
+        
+        $this -> read();
+
+        header("Location: ./view/aula/aula.php?aula=" .$_POST["aula_id"]);
     }
 }
 
