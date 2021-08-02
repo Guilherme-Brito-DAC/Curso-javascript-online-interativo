@@ -8,6 +8,7 @@ require_once "model/Usuario.php";
 require_once "model/Aula.php";
 require_once "model/Comentario.php";
 
+
 $app = new UsuarioController();
 $Comm = new ComentarioController();
 $Aula = new AulaController();
@@ -24,10 +25,6 @@ if (isset($_GET['acao'])) {
             $Comm->create();
             break;
 
-        case 'read_comment':
-            $Comm->read();
-            break;
-
         case 'delete_comment':
             $Comm->delete();
             break;
@@ -41,6 +38,7 @@ if (isset($_GET['acao'])) {
             break;
 
         case 'read_aula':
+            $Comm->read();
             $Aula->read();
             break;
 

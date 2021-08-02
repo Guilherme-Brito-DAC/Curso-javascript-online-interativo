@@ -18,7 +18,6 @@ class AulaController{
     public function read()
     {
         $obj = new Aula();
-        
         $aulas = $obj->read();
 
         session_start();

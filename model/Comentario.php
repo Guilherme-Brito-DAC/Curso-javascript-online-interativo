@@ -19,9 +19,9 @@ class Comentario{
 
 	public function read()
     {
-        $sql = $this->con->prepare("SELECT * FROM comentario WHERE aula_id=?");
-        $sql->execute([$this->getAula_Id()]);
-        $row = $sql->fetchObject();
+        $sql = $this->con->prepare("SELECT * FROM comentario");
+        $sql->execute();
+        $row = $sql->fetchAll();
 
         return $row;		
 	}

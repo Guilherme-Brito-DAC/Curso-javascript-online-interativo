@@ -10,18 +10,14 @@ class ComentarioController{
         $obj -> setMensagem($_POST["comentario"]);
         $obj -> create();
 
-        header("Location: ./view/aula.php?aula=" .$_POST["aula_id"]);
+        header("Location: ./view/aula/aula.php?aula=" .$_POST["aula_id"]);
     }
 
     public function read(){
         $obj = new Comentario();
-
-        $obj -> setAula_id($_GET["aula"]);
         session_start();
-
-        $_SESSION["aula"] = $obj -> read(); 
-
-        header("Location: ./view/aula/aula.php?aula=" . $_GET["aula"]);
+        header("../usuario/perfil.php");
+        $_SESSION["comentarios"] = $obj -> read();
     }
 
     public function update(){
@@ -73,58 +69,10 @@ class ComentarioController{
 
     public function delete()
     {
-        session_start();
-
-        if( !isset($_SESSION["id"]) )
-        {
-            echo "Id não informado";
-            header("Location: ./view/perfil.php");
-            exit;
-        }
-
-        if( !isset($_POST["senha"]) )
-        {
-            echo "Senha não informado";
-            header("Location: ./view/perfil.php");
-            exit;
-        }
-
-        try
-        {
-        $obj = new Usuario();
-
-        $con = $obj->getCon();
-
-        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-        $query = "SELECT * FROM usuario WHERE email = :email AND senha = :senha";
-            
-        $user = $con->prepare($query);
-
-            $user->execute(
-                    array(
-                        'email' => $_SESSION["email"],
-                        'senha' => $_POST["senha"]
-                    )
-                );
-
-        $count = $user->rowCount();
-
-        if($count > 0)
-        {
-            $obj->setId($_SESSION["id"]);
-            $obj->delete();  
-        }
-        else
-        {
-            echo "Senha incorreta";
-        }
-
-        }
-        catch(PDOException $error)
-        {
-            echo $error->getMessage();
-        }
+        $obj = new Comentario;
+        $obj -> setId($_POST["id"]);
+        $obj -> delete();
+        header("./view/aula/aula.php");
     }
 }
 
