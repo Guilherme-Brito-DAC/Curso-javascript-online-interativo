@@ -94,22 +94,18 @@ foreach ($_SESSION["comentarios"] as $element) {
                             <script>
                                 let isEditting = false
 
-                                document.getElementById("edit").onclick = function(e) {
-
-                                    console.log(e)
-
+                                function Edit(id){
                                     if (isEditting == true) {
-                                        document.getElementById("edit2").readOnly = true
-                                        document.getElementById("edit2").className = "edit_comment"
-                                        document.getElementById("btn_salvar").style.display = "none"
+                                        document.getElementById(id).readOnly = true
+                                        document.getElementById(id).className = "edit_comment"
+                                        document.getElementById("btn_salvar"+id).style.display = "none"
                                         isEditting = false
                                     } else {
-                                        document.getElementById("edit2").readOnly = false
-                                        document.getElementById("edit2").className = ""
-                                        document.getElementById("btn_salvar").style.display = "block"
+                                        document.getElementById(id).readOnly = false
+                                        document.getElementById(id).className = ""
+                                        document.getElementById("btn_salvar"+id).style.display = "block"
                                         isEditting = true
                                     }
-
                                 }
                             </script>
                             <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
@@ -120,8 +116,8 @@ foreach ($_SESSION["comentarios"] as $element) {
                                     </div>
 
                                     <form action="../../?acao=update_comment" method="post" style="display:flex;">
-                                        <input type="text" id="edit2" name="mensagem" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>" />
-                                        <button type="submit" name="id" id="btn_salvar" style="border-radius: 0px; margin-left: 1em; height:51px; margin-bottom: 2.4em; display:none" value="<?= $comentarios[$i]["id"] ?>">
+                                        <input type="text" id="<?= $comentarios[$i]['id'] ?>" name="mensagem" readonly required class="edit_comment" value="<?= $comentarios[$i]["mensagem"] ?>" />
+                                        <button type="submit" name="id" id="btn_salvar<?= $comentarios[$i]['id'] ?>" style="border-radius: 0px; margin-left: 1em; height:51px; margin-bottom: 2.4em; display:none" value="<?= $comentarios[$i]["id"] ?>">
                                             <img src="https://img.icons8.com/android/24/ffffff/checkmark.png">
                                         </button>
                                         <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
@@ -132,7 +128,7 @@ foreach ($_SESSION["comentarios"] as $element) {
                                 if ($comentarios[$i]["usuario_id"] == $_SESSION["id"]) {
                                 ?>
                                 <div style="margin-left: 21em;">
-                                    <button class="btn btn-primary" type="button" name="edit" value="" id="edit" style="margin-top: 5px;">
+                                    <button class="btn btn-primary" type="button" name="edit" value="" onclick="Edit(<?= $comentarios[$i]['id'] ?>)" style="margin-top: 5px;">
                                         <img src="https://img.icons8.com/material-outlined/30/ffffff/edit--v1.png" />
                                     </button>
                                     <form action="../../?acao=delete_comment" method="post" style="float:right">
