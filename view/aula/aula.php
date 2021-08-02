@@ -3,21 +3,21 @@
 
 include "../usuario/autenticacao.php";
 
-if ($_GET['aula'] == ""||!isset($_GET['aula'])) {
+if ($_GET['aula'] == "" || !isset($_GET['aula'])) {
     header('Location: ../usuario/home.php');
     exit;
 }
 
-foreach ( $_SESSION["aulas"] as $element ) {
-    if ( $_GET["aula"] == $element["id"] ) {
+foreach ($_SESSION["aulas"] as $element) {
+    if ($_GET["aula"] == $element["id"]) {
         $aula = $element;
     }
 }
 
 $comentarios = [];
 
-foreach ( $_SESSION["comentarios"] as $element ) {
-    if ( $_GET["aula"] == $element["aula_id"] ) {
+foreach ($_SESSION["comentarios"] as $element) {
+    if ($_GET["aula"] == $element["aula_id"]) {
         array_push($comentarios, $element);
     }
 }
@@ -42,7 +42,7 @@ foreach ( $_SESSION["comentarios"] as $element ) {
 </head>
 
 <body>
-    
+
     <?php include "../prop/navbar.php" ?>
 
     <div id="main">
@@ -52,7 +52,7 @@ foreach ( $_SESSION["comentarios"] as $element ) {
                 <?php echo $_GET['aula']; ?>
                 <b style="color: white;">
                     -
-                    <?php echo $aula["titulo"]?>
+                    <?php echo $aula["titulo"] ?>
                 </b>
             </h1>
 
@@ -74,9 +74,9 @@ foreach ( $_SESSION["comentarios"] as $element ) {
 
                 <div id="div_resumo" style="margin-top: 2rem; color: white;">
                     <h2 style="color: white;">
-                            <?php echo $aula["titulo"]?>
+                        <?php echo $aula["titulo"] ?>
                     </h2>
-                    <?php echo stripslashes($aula["texto"] );?>
+                    <?php echo stripslashes($aula["texto"]); ?>
                 </div>
 
                 <div id="div_comentarios" style="margin-top: 2rem;display:none">
@@ -89,22 +89,26 @@ foreach ( $_SESSION["comentarios"] as $element ) {
                     </div>
                     <div class="comentarios_escritos">
 
-                        <?php  
+                        <?php
                         for ($i = 0; $i < sizeof($comentarios); $i++) {
                         ?>
 
                             <div class="comentario_individual" style="display:flex; margin-top: 5em; margin-left: 2em; gap: 20px; align-items: center; ">
-                            <div class="comment">
-                                <p><?= $comentarios[$i]["nome"]?></p>
-                                <p><?= $comentarios[$i]["mensagem"]?></p>
+                                <div class="comment">
+                                    <p><?= $comentarios[$i]["nome"] ?></p>
+                                    <p><?= $comentarios[$i]["mensagem"] ?></p>
+                                </div>
+
+                                <?php
+                                if ($comentarios[$i]["usuario_id"] == $_SESSION["id"]) {
+                                ?>
+                                    <form action="../../?acao=delete_comment" method="post" style="float:right">
+                                        <button type="submit" name="id" value="<?= $comentarios[$i]["id"] ?>" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/ffffff/delete--v1.png" /></button>
+                                        <input type="" name="aula_id" value="<?= $_GET["aula"] ?>" style="display: none;" />
+                                    </form>
+
+                                <?php } ?>
                             </div>
-
-                            <form action="../../?acao=delete_comment" method="post" style="float:right">
-                                <button type="submit" name="id" value="<?=$comentarios[$i]["id"] ?>" class="btn btn-danger" style="transform: scale(0.8); "><img src="https://img.icons8.com/ios/40/ffffff/delete--v1.png"/></button>
-                                <input type="" name="aula_id" value="<?=$_GET["aula"]?>" style="display: none;"/>
-                            </form>
-
-                        </div>
 
                         <?php } ?>
 
@@ -116,18 +120,19 @@ foreach ( $_SESSION["comentarios"] as $element ) {
                 <h2 style="color: white; margin-bottom: 1rem;">Aulas</h2>
 
                 <script>
-                    function redirect(aula_id)
-                    {
+                    function redirect(aula_id) {
                         window.location.href = "aula.php?aula=" + aula_id;
                     }
-                    </script>
+                </script>
 
-                <?php  
+                <?php
                 for ($i = 0; $i < sizeof($_SESSION["aulas"]); $i++) {
                 ?>
 
-                    <div class="nextaula" id="${ativo}" onclick="redirect(<?= $_SESSION['aulas'][$i]['id']?>)">
-                        <span><h4 style="color:white;opacity:${opacity}"><?= $_SESSION["aulas"][$i]["titulo"] ?></h4></span>
+                    <div class="nextaula" id="${ativo}" onclick="redirect(<?= $_SESSION['aulas'][$i]['id'] ?>)">
+                        <span>
+                            <h4 style="color:white;opacity:${opacity}"><?= $_SESSION["aulas"][$i]["titulo"] ?></h4>
+                        </span>
                     </div>
 
                 <?php } ?>

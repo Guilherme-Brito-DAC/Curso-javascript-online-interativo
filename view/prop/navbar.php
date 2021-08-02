@@ -43,7 +43,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
 
-                window.location.href = "../usuario/logout.php";
+                window.location.href = "../prop/logout.php";
 
             }
         })
