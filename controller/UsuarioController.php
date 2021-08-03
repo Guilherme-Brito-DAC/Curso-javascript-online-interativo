@@ -201,6 +201,7 @@ class UsuarioController{
                 echo $error->getMessage();
             }
         }
+        header("Location: ./view/usuario/perfil.php");
     }
 
     public function updateSenha(){
@@ -280,10 +281,12 @@ class UsuarioController{
     
     public function update_img()
     {
-        session_start();
         $obj = new Usuario();
-        $obj->setId($_SESSION['id']);
+        session_start();
+        $obj->setId($_SESSION["id"]);
         $obj->updateIMG($_GET['img']);
+        $_SESSION["img"]=$obj->getImg();
+        header("Location: ./view/usuario/perfil.php");
     }
 }
 
