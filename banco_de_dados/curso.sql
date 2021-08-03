@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Tempo de geração: 06-Jul-2021 às 21:06
--- Versão do servidor: 5.7.31
--- versão do PHP: 7.3.21
+-- Host: 127.0.0.1
+-- Tempo de geração: 03-Ago-2021 às 01:16
+-- Versão do servidor: 10.4.19-MariaDB
+-- versão do PHP: 7.3.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,56 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `atividades`
---
-
-DROP TABLE IF EXISTS `atividades`;
-CREATE TABLE IF NOT EXISTS `atividades` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `codigo` text NOT NULL,
-  `data_postagem` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `questao_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_artigo_usuario_idx` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `aula`
---
-
-DROP TABLE IF EXISTS `aula`;
-CREATE TABLE IF NOT EXISTS `aula` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` text NOT NULL,
-  `descrição` text NOT NULL,
-  `link` text NOT NULL,
-  `texto` text NOT NULL,
-  `data_de_postagem` date NOT NULL,
-  `professor_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `comentario`
 --
 
-DROP TABLE IF EXISTS `comentario`;
-CREATE TABLE IF NOT EXISTS `comentario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `comentario` (
+  `id` int(11) NOT NULL,
   `mensagem` varchar(300) NOT NULL,
-  `data_postagem` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `questao_id` int(11) NOT NULL,
+  `data_postagem` datetime NOT NULL DEFAULT current_timestamp(),
+  `aula_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
-  `atividades_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_comentario_usuario1_idx` (`usuario_id`),
-  KEY `fk_comentario_atividades1_idx` (`atividades_id`)
+  `nome` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `comentario`
+--
+
+INSERT INTO `comentario` (`id`, `mensagem`, `data_postagem`, `aula_id`, `usuario_id`, `nome`) VALUES
+(27, 'bananaqwe', '2021-08-01 21:29:41', 1, 1, 'Gui'),
+(28, 'teste123', '2021-08-02 11:11:54', 1, 1, 'Gui');
 
 -- --------------------------------------------------------
 
@@ -81,41 +50,55 @@ CREATE TABLE IF NOT EXISTS `comentario` (
 -- Estrutura da tabela `usuario`
 --
 
-DROP TABLE IF EXISTS `usuario`;
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
   `nome` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `senha` varchar(45) DEFAULT NULL,
   `img_id` int(11) NOT NULL,
-  `nivel` enum('professor','aluno') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4;
+  `nivel` enum('professor','aluno') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `img_id`, `nivel`) VALUES
-(32, 'Guilherme', 'guilherme@gmail.com', '123', 1, 'professor'),
-(33, 'joão', 'joavts@gmail.com', '1234', 1, 'professor');
+(1, 'Gui', 'gui@g', '123', 1, 'aluno'),
+(2, 'gui2', 'gui1@g', '123', 1, 'professor');
 
 --
--- Restrições para despejos de tabelas
+-- Índices para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `atividades`
---
-ALTER TABLE `atividades`
-  ADD CONSTRAINT `fk_artigo_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `comentario`
+-- Índices para tabela `comentario`
 --
 ALTER TABLE `comentario`
-  ADD CONSTRAINT `fk_comentario_atividades1` FOREIGN KEY (`atividades_id`) REFERENCES `atividades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_comentario_usuario1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comentario_usuario1_idx` (`usuario_id`);
+
+--
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

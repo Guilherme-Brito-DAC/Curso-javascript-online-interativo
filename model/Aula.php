@@ -31,7 +31,8 @@ class Aula{
 
 	public function update()
     {
-        
+        $sql = $this->con->prepare("UPDATE aula SET titulo=?, texto=?, descrição=? WHERE id=?");
+		$sql->execute([$this->getTitulo(),$this->getTexto(),$this->getDescricao(),$this->getId()]);
 	}
 
 	public function delete()

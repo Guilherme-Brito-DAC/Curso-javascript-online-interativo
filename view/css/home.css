@@ -235,4 +235,8 @@ main{
     color:#2596be;
 }
 
- 
+.edit{
+
+    border-radius: 5px;
+    width: 10px;
+} 

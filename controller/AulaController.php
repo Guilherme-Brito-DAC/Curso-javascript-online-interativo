@@ -29,12 +29,23 @@ class AulaController{
 
     public function update()
     {
-
+        $obj = new Aula();
+        $obj -> setTitulo($_POST["titulo"]);
+        $obj -> setDescricao($_POST["descricao"]);
+        $obj -> setTexto($_POST["texto"]);
+        $obj -> setId($_POST["id"]);
+        session_start();
+        $obj -> update();
+        $this->read();
     }
         
     public function delete()
     {
-        
+        $obj = new Aula();
+        $obj->setId($_POST["aula_id"]);
+        session_start();
+        $obj->delete();
+        $this->read();
     }
 }
 
