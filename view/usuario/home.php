@@ -24,8 +24,7 @@ include "autenticacao.php";
   <main id="main">
 
     <script>
-      function redirect(aula_id)
-      {
+      function redirect(aula_id) {
         window.location.href = "../aula/aula.php?aula=" + aula_id;
       }
     </script>
@@ -35,24 +34,27 @@ include "autenticacao.php";
     for ($i = 0; $i < sizeof($_SESSION["aulas"]); $i++) {
     ?>
 
-      <div class="list-item" onclick="redirect(<?= $_SESSION['aulas'][$i]['id']?>)" style="cursor:pointer">
+      <div class="list-item" onclick="redirect(<?= $_SESSION['aulas'][$i]['id'] ?>)" style="cursor:pointer">
         <div class="card text-white bg-dark mb-5" style="max-width: 20rem;">
           <div class="card-body">
             <img src="../img/code.png" style="width:100%;margin-bottom:1rem" />
             <h4 class="card-title"><?= $_SESSION["aulas"][$i]["titulo"] ?></h4>
             <p class="card-text"><?= $_SESSION["aulas"][$i]["descrição"] ?></p>
-            <label style="opacity:0.5"><?= $_SESSION["aulas"][$i]["data_de_postagem"] ?></label>           
-            <form method="POST" action = "../../?acao=delete_aula">
-            <button style="border-radius: 5px; width: 70px; float: right; display: flex; margin-left: 5px" 
-            type="submit" name="aula_id" value="<?= $_SESSION['aulas'][$i]['id']?>" class="btn btn-danger">
-            <img style="width: 24px " src="https://img.icons8.com/ios-glyphs/30/FFFFFF/trash--v1.png"/></button>
-            </form>
-            <button style="border-radius: 5px; width: 70px; float: right; display: flex" type="button" class="btn btn-warning">
-            <a href="../aula/editar_aula.php?id=<?= $_SESSION['aulas'][$i]['id']?>"><img style="width: 20px" src="https://img.icons8.com/ios/50/FFFFFF/edit-file.png"/></a></button>           
+            <label style="opacity:0.5"><?= $_SESSION["aulas"][$i]["data_de_postagem"] ?></label>
+
+            <?php
+            if ($_SESSION["nivel"] == "professor") :
+            ?>
+              <form method="POST" action="../../?acao=delete_aula">
+                <button style="border-radius: 5px; width: 70px; float: right; display: flex; margin-left: 5px" type="submit" name="aula_id" value="<?= $_SESSION['aulas'][$i]['id'] ?>" class="btn btn-danger">
+                  <img style="width: 24px " src="https://img.icons8.com/ios-glyphs/30/FFFFFF/trash--v1.png" /></button>
+              </form>
+              <button style="border-radius: 5px; width: 70px; float: right; display: flex" type="button" class="btn btn-warning">
+                <a href="../aula/editar_aula.php?id=<?= $_SESSION['aulas'][$i]['id'] ?>"><img style="width: 20px" src="https://img.icons8.com/ios/50/FFFFFF/edit-file.png" /></a></button>
+            <?php endif; ?>
           </div>
         </div>
       </div>
-
     <?php } ?>
 
     <div class="myloader"></div>
