@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     if(isset($_SESSION['alert'])){}
     
     ?>
@@ -19,20 +21,37 @@
        include "../css/bootstrap.min.css"?>
   </style>
   <title>Login</title>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  </head>
  <body>
     <center>    
             <div class="box">
                 <h1 id="titulo">Login</h1>
                 <br />
+                <?php
+				
+				if(isset($_SESSION["alert"]) && $_SESSION["alert"] == "Invalido" ) :
+
+				?>
+
+				<script>
+					Swal.fire({
+  					icon: 'error',
+  					title: "<h3 style='color: white'>Oops...</h3>",
+ 		 			html: "<h6 style='color: white'>Email ou senha não coincidem!</h6>",
+					background: '#474547'
+				})
+				</script>
+
+				<?php endif; ?>
                 <form action="../../?acao=login" method="post">
                     <div class="form-floating">
-                        <input type="email" name="email" class="form-control" id="email_log" value="" />
+                        <input type="email" name="email" class="form-control" id="email_log" value="" required/>
                         <label for="email_log">Email</label>
                     </div>
                     <br />
                     <div class="form-floating">
-                        <input type="password" name="senha" class="form-control" id="txt_senha_login" value="" />
+                        <input type="password" name="senha" class="form-control" id="txt_senha_login" value="" required/>
                         <label for="floatingPassword">Senha</label>
                     </div>
                     <br />
@@ -77,3 +96,9 @@
 		</script>
  </body>
 </html>
+<?php
+
+$_SESSION["alert"] = "";
+session_destroy();
+
+?>

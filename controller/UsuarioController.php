@@ -10,14 +10,9 @@ class UsuarioController{
     {
         $obj = new Usuario();
 
-        try
-        {
-
         $con = $obj->getCon();
 
         $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-        if($_POST['email'] != "" || $_POST['senha'] != "" ){
 
             $query = "SELECT * FROM usuario WHERE email = :email AND senha = :senha";
             
@@ -63,52 +58,23 @@ class UsuarioController{
             else
             {
                 session_start();
-                $_SESSION ['alert']= 'Senha_Inválida';
-                include 'view/usuario/login.php';
+                $_SESSION ['alert']= 'Invalido';
+                header("Location: view/usuario/login.php");
             }
-
-        }
-        else
-        {
-            session_start();
-            $_SESSION ['alert']= 'Campos';
-            include 'view/usuario/login.php';
-        }
-       
-        }
-        catch(PDOException $error)
-        {
-            echo $error->getMessage();
-        }
     }
 
     public function create(){
         $obj = new Usuario();
-
-        if($_POST['email'] != "" && $_POST['nome'] != "" && $_POST['senha'] != "" && $_POST['confirmar_senha'] != "" ){
            
            if($_POST['senha'] == $_POST['confirmar_senha']){
-
-            try
-            {
     
-            $con = $obj->getCon();
+                $emailDuplicado = $obj->VerificaEmailDuplicado($_POST["email"]);
     
-            $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    
-            $query = "SELECT * FROM usuario WHERE email = :email";
-            
-            $user = $con->prepare($query);
-
-            $user->execute(array('email' => $_POST["email"]));
-    
-            $count = $user->rowCount();
-    
-                if( $count > 0 )
+                if( $emailDuplicado == true )
                 {
                     session_start();
                     $_SESSION ['alert']= 'Email';
-                    include 'view/usuario/login.php';
+                    header("Location:view/usuario/cadastro.php");
                 }
                 else
                 {
@@ -118,7 +84,7 @@ class UsuarioController{
                     $obj->setNome($_POST['nome']);
                     $obj->setSenha($_POST['senha']);
                     $obj->setNivel($_POST['rad']);
-
+                    
                     $_SESSION["login"] = "first";
                     $_SESSION["email"] = $_POST["email"];
                     $_SESSION["senha"] = $_POST["senha"];
@@ -136,24 +102,13 @@ class UsuarioController{
                     $aula->read();
                 }     
             }
-            catch(PDOException $error)
-            {
-                echo $error->getMessage();
-            }
-            }
+
             else
             {
                 session_start();
                 $_SESSION ['alert'] = 'Senha';
-                include 'view/usuario/login.php';
+                header("Location:view/usuario/cadastro.php");
             }
-        }
-        else
-        {
-            session_start();
-            $_SESSION ['alert'] = 'Campos';
-            include 'view/usuario/login.php';
-        }  
     }
 
 
@@ -169,38 +124,21 @@ class UsuarioController{
 
         }else
         {
-            try
-            {
+                $emailDuplicado = $obj->VerificaEmailDuplicado($_POST["email"]);
     
-            $con = $obj->getCon();
-    
-            $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    
-            $query = "SELECT * FROM usuario WHERE email = :email";
-            
-            $user = $con->prepare($query);
-
-            $user->execute(array('email' => $_POST["email"]));
-    
-            $count = $user->rowCount();
-    
-                if( $count > 0 )
+                if( $emailDuplicado == true )
                 {
                     echo "Email já cadastrado!";
-                    header("Location: ../");
+                    header("Location: view/usuario/cadastro.php");
                 }
                 else
                 {
                     session_start();
                     $obj->setId($_SESSION["id"]);
                     $obj->update($_POST["email"],$_POST["nome"]);
-                }     
-            }
-            catch(PDOException $error)
-            {
-                echo $error->getMessage();
-            }
+                }    
         }
+        header("Location: view/usuario/perfil.php");
     }
 
     public function updateSenha(){
@@ -213,7 +151,7 @@ class UsuarioController{
             if($_POST['senhaOld'] == $_POST['senhaNew'])
             {
                 echo "A senha nova não pode ser igual à anterior";
-                header("Location: ./view/usuario/perfil.php");
+                header("Location: view/usuario/perfil.php");
             }
             else
             {
@@ -225,14 +163,14 @@ class UsuarioController{
                 else
                 {
                     echo "As senhas novas não coincidem";
-                    header("Location: ./view/usuario/perfil.php");
+                    header("Location: view/usuario/perfil.php");
                 }
             }
         }
         else
         {
             echo "Senha antiga não confere";
-            header("Location: ./view/usuario/perfil.php");
+            header("Location: view/usuario/perfil.php");
         }
     }
 
@@ -240,8 +178,6 @@ class UsuarioController{
     {
         session_start();
 
-        try
-        {
         $obj = new Usuario();
 
         $con = $obj->getCon();
@@ -264,26 +200,24 @@ class UsuarioController{
         if($count > 0)
         {
             $obj->setId($_SESSION["id"]);
-            $obj->delete();  
+            $obj->delete();
+            header("Location: ./view/usuario/login.php");
+            session_destroy();
         }
         else
         {
-            echo "Senha incorreta";
-        }
-
-        }
-        catch(PDOException $error)
-        {
-            echo $error->getMessage();
+            header("Location: ./view/usuario/perfil.php");
         }
     }
     
     public function update_img()
     {
-        session_start();
         $obj = new Usuario();
-        $obj->setId($_SESSION['id']);
+        session_start();
+        $obj->setId($_SESSION["id"]);
         $obj->updateIMG($_GET['img']);
+        $_SESSION["img"]=$obj->getImg();
+        header("Location: ./view/usuario/perfil.php");
     }
 }
 

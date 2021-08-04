@@ -63,6 +63,26 @@ class Usuario{
         return $row[0];	
 	}
 
+	public function VerificaEmailDuplicado($email){
+            
+            $sql = $this->con->prepare("SELECT * FROM usuario WHERE email = ?");
+
+            $sql->execute([$email]);
+    
+            $count = $sql->rowCount();
+
+			if($count > 0){
+				
+				return true;
+
+			}
+			else{
+
+				return false;
+
+			}
+	}
+
 	public function getNivel()
 	{
 		return $this->nivel;

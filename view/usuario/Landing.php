@@ -30,7 +30,7 @@
             </div>
         </div>
         <p style="color: #222222; font-size: 15px; padding: auto; text-align: center; margin-right: 320px;">
-            Feito pelo brabo felipao da bola inchada, temoteo pica torta tuzin cu de buraco, guilherme rei delas</p>
+            Feito pelo brabo felipao da bola inchada, temoteo pica torta tuzin cu de buraco, guilherme rei delas e duda quicada queda livre</p>
     </div>
 </body>
 

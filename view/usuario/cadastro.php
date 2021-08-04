@@ -1,7 +1,11 @@
 <?php
 
-    if(isset($_SESSION['alert'])){}
-    
+	session_start();
+
+    if(isset($_SESSION['alert'])){
+
+	}
+
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,20 +18,53 @@
             <?php include "../css/login.css";
                 include "../css/bootstrap.min.css"?>
         </style>
+		 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body>
 		<center>
 			<div class="box">
 				<h1 id="titulo">Cadastro</h1>
 				<br/>
+				<?php
+				
+				if(isset($_SESSION["alert"]) && $_SESSION["alert"] == "Senha" ) :
+
+				?>
+
+				<script>
+					Swal.fire({
+  					icon: 'error',
+  					title: "<h3 style='color: white'>Oops...</h3>",
+ 		 			html: "<h6 style='color: white'>As senhas não conferem!</h6>",
+					background: '#474547'
+				})
+				</script>
+
+				<?php endif; ?>
+				<?php
+				
+				if(isset($_SESSION["alert"]) && $_SESSION["alert"] == "Email" ) :
+
+				?>
+
+				<script>
+					Swal.fire({
+  					icon: 'error',
+  					title: "<h3 style='color: white'>Oops...</h3>",
+ 		 			html: "<h6 style='color: white'>Já existe uma conta com esse Email!</h6>",
+					background: '#474547'
+				})
+				</script>
+
+				<?php endif; ?>
 				<form action="../../?acao=create" method="post" id="formulario">
 					<div class="form-group">
 						<div class="form-floating mb-3">
-							<input type="text" name="nome" class="form-control" id="floatingInput" value="" />
+							<input type="text" name="nome" class="form-control" id="floatingInput" value="" required/>
 							<label for="floatingInput">Nome</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="email" name="email" class="form-control" id="email_cad" value="" />
+							<input type="email" name="email" class="form-control" id="email_cad" value="" required/>
 							<label for="email_cad">Email</label>
 						</div>
 						<div class="form-floating mb-3" style="display:flex;justify-content:space-around">
@@ -45,22 +82,22 @@
 							</div>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="password" name="senha" class="form-control" id="txt_senha_cadastro" value="" />
+							<input type="password" name="senha" class="form-control" id="txt_senha_cadastro" value="" required/>
 							<label for="floatingPassword">Senha</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="btn_senha_cadastro" />
+							<input class="form-check-input" type="checkbox" value="" id="btn_senha_cadastro"/>
 							<label class="form-check-label" id="lbl_senha_cad" for="flexCheckDefault" style="float: left;">
 							Mostrar Senha
 							</label>
 						</div>
 						<br />
 						<div class="form-floating mb-3">
-							<input type="password" name="confirmar_senha" class="form-control" id="txt_confirmar_senha_cadastro" value="" />
+							<input type="password" name="confirmar_senha" class="form-control" id="txt_confirmar_senha_cadastro" value="" required/>
 							<label for="floatingPassword">Confirmar Senha</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="" id="btn_confimar_senha_cadastro" />
+							<input  class="form-check-input" type="checkbox" value="" id="btn_confimar_senha_cadastro" />
 							<label class="form-check-label" id="lbl_con_senha" for="flexCheckDefault" style="float: left;">
 							Mostrar Senha
 							</label>
@@ -122,3 +159,9 @@
 		</script>
 	</body>
 </html>
+<?php
+
+$_SESSION["alert"] = "";
+session_destroy();
+
+?>
